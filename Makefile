@@ -4,14 +4,14 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRCS_DIR = src
-SRCS_FILES = main.c #render.c parser.c input.c
+SRCS_FILES = main.c move_player.c init_game.c map_draw.c open_map.c #render.c parser.c input.c
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS_DIR = obj
 OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 LIBFT = ./libs/libft/libft.a
-MLX = ./libs/mlx_linux/libmlx.a -lXext -lX11 -lm -lz
+MLX = ./libs/minilibx-linux/libmlx.a -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
@@ -22,7 +22,7 @@ $(LIBFT):
 
 $(MLX):
 	@echo "🔨 Compiling MinilibX..."
-	@make -C ./libs/mlx_linux
+	@make -C ./libs/minilibx-linux
 	@echo "✅ MinilibX compiled successfully!"
 
 $(OBJS_DIR):
@@ -39,7 +39,7 @@ $(NAME): $(OBJS) $(LIBFT) $(MLX)
 clean:
 	@rm -rf $(OBJS_DIR)
 	@make clean -C ./libs/libft
-	@make clean -C ./libs/mlx_linux
+	@make clean -C ./libs/minilibx-linux
 	@echo "🧹 Cleaned object files"
 
 fclean: clean
