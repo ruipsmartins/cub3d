@@ -6,20 +6,20 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/25 11:03:04 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:24:45 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_map(t_data *data)
+void	free_map(t_game *game)
 {
 	int	i;
 
 	i = 0;
-	while (data->map[i])
-		free(data->map[i++]);
-	free(data->map);
+	while (game->map[i])
+		free(game->map[i++]);
+	free(game->map);
 }
 
 static void check_newlines (char *line, char *holder)
@@ -31,6 +31,20 @@ static void check_newlines (char *line, char *holder)
 		free(line);
 		exit(1);
 	}
+}
+
+void draw_map(t_game *game)
+{
+	char **map = game->map;
+	int color = 0x0000FF;
+	(void)color;
+	for(int y = 0; map[y]; y++)
+		for(int x = 0; map[y][x]; x++)
+			if(map[y][x] == '1')
+			{
+				//draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
+				img_draw(game, game->img_wall, x , y );
+			}
 }
 
 char	**open_map(char *path)

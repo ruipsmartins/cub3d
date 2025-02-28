@@ -6,46 +6,152 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/25 12:03:13 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:54:01 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
-int	close_game(t_data *data)
+
+// our own put_pixel function
+void	ft_put_pixel(int x, int y, int color, t_game *game)
 {
-	mlx_destroy_image(data->mlx_ptr, data->player->img_player);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-	free_map(data);
-	ft_putchar_fd('\n', 1);
-	exit(0);
+	if (x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT || x < 0 || y < 0)
+		return ;
+	int index = (x * game->bpp / 8) + (y * game->size_line);
+	game->data[index] = color & 0xFF;
+	game->data[index + 1] = (color & 0xFF00) >> 8;
+	game->data[index + 2] = (color & 0xFF0000) >> 16;
+}
+
+// our own clear_image function
+void clear_image(t_game *game)
+{
+    for(int y = 0; y < WINDOW_HEIGHT; y++)
+        for(int x = 0; x < WINDOW_WIDTH; x++)
+            ft_put_pixel(x, y, 0, game);
+}
+
+
+void draw_square(int x, int y, int size, int color, t_game *game)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            ft_put_pixel(x + i, y + j, color, game);
+        }
+    }
+}
+
+void	img_draw(t_game *game, void *image, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->win, image, x * 64 , y * 64);
+}
+
+
+
+// touch function 
+bool touch(float px, float py, t_game *game)
+{
+	int x = px / BLOCK;
+    int y = py / BLOCK;
+    if(game->map[y][x] == '1')
+	return true;
+    return false;
+}
+
+// distance calculation functions
+float distance(float x, float y){
+	return sqrt(x * x + y * y);
+}
+
+float fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
+{
+	float delta_x = x2 - x1;
+    float delta_y = y2 - y1;
+    float angle = atan2(delta_y, delta_x) - game->player.angle;
+    float fix_dist = distance(delta_x, delta_y) * cos(angle);
+    return fix_dist;
+}
+
+
+// raycasting functions
+void draw_line(t_player *player, t_game *game, float start_x, int i)
+{
+	float cos_angle = cos(start_x);
+    float sin_angle = sin(start_x);
+    float ray_x = player->x;
+    float ray_y = player->y;
+	
+    while(!touch(ray_x, ray_y, game))
+    {
+		if(DEBUG)
+		ft_put_pixel(ray_x, ray_y, 0xFF0000, game);
+        ray_x += cos_angle;
+        ray_y += sin_angle;
+    }
+    if(!DEBUG)
+    {
+		float dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
+        float height = (BLOCK / dist) * (WINDOW_WIDTH / 2);
+        int start_y = (WINDOW_HEIGHT - height) / 2;
+        int end = start_y + height;
+        while(start_y < end)
+        {
+			ft_put_pixel(i, start_y, 200, game);
+            start_y++;
+        }
+    }
+}
+
+int draw_loop(t_game *game)
+{
+	t_player *player = &game->player;
+
+
+	move_player(player);
+	clear_image(game);
+	//mlx_clear_window(game->mlx, game->win);
+	draw_square(player->x, player->y, 40, 0x00FF00, game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+
+	float fraction = PI / 3 / WINDOW_WIDTH;
+    float start_x = player->angle - PI / 6;
+    int i = 0;
+    while(i < WINDOW_WIDTH)
+    {
+        draw_line(player, game, start_x, i);
+        start_x += fraction;
+        i++;
+    }
+	draw_map(game);
+
+	return 0;
 }
 
 
 int main(int argc, char **argv)
 {
-	t_data data;
-	t_player player;
-	data.map_size_x = 1920;
-	data.map_size_y = 1080;
-	data.player = &player;
+	t_game	game;
+	
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 		return (1);
 	}
-	data.map = open_map(argv[1]);
-	init_game(&data);
-	//data_init(&data);
 
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, player.img_player, player.x, player.y);
-	mlx_hook(data.win_ptr, DestroyNotify, NoEventMask, close_game, &data);
-	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, key_press, &data);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, key_release, &data);
-	mlx_loop_hook(data.mlx_ptr, (void *)move_player, &data); // Corrigido para passar o ponteiro correto
+	game.map = open_map(argv[1]);
+	init_game(&game);
 
-	mlx_loop(data.mlx_ptr);
+	mlx_hook(game.win, KeyPress, KeyPressMask, key_press, &game);
+	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_release, &game);
+	
+	mlx_put_image_to_window(game.mlx, game.win, game.img_wall, 200, 200);
+	mlx_loop_hook(game.mlx, draw_loop, &game);
+	
+	
+	
+	mlx_loop(game.mlx);
 	return (0);
 }

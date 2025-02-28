@@ -5,54 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 18:48:11 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/25 12:23:29 by ruidos-s         ###   ########.fr       */
+/*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
+/*   Updated: 2025/02/28 12:37:39 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "./cub3D.h"
 
-void	window_size(t_data *data)
+void	init_game(t_game *game)
 {
-	int	y;
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	game->data = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
+	//mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	init_player(&game->player);
+	game->player.img = mlx_xpm_file_to_image(game->mlx,
+		"./img/player_s.xpm", &game->player.img_width, &game->player.img_height);
+	if(!game->player.img)
+	{
+		ft_putstr_fd("Error\nPlayer image not found\n", 2);
+		exit(1);
+	}
+	game->img_wall = mlx_xpm_file_to_image(game->mlx,
+		"./img/bricksx64.xpm", &game->img_width, &game->img_height);
 
-	y = 0;
-	data->map_size_x = (ft_strlen(data->map[0]));
-	while (data->map[y])
-		y++;
-	data->map_size_y = y;
+		
+	
 }
 
-void init_player(t_player *player)
+void	init_player(t_player *player)
 {
-    player->x = WIDTH / 2;
-    player->y = HEIGHT / 2;
-    player->angle = PI / 2;
-	player->speed = 0.5;
-	player->img_player = NULL;
-    player->key_up = false;
-    player->key_down = false;
-    player->key_right = false;
-    player->key_left = false;
-
-    player->left_rotate = false;
-    player->right_rotate = false;
-}
-
-
-
-void	init_game(t_data *data)
-{
-	init_player(data->player);
-
-	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map_size_x,
-			data->map_size_y, "Cub3D");
-	data->player->img_player = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./img/player_s.xpm", &data->img_width, &data->img_height);
-	data->img_ground = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./img/fundo.xpm", &data->img_width, &data->img_height);
-	data->img_wall = mlx_xpm_file_to_image(data->mlx_ptr,
-			"./img/bricksx64.xpm", &data->img_width, &data->img_height);
-	map_draw(data);
+	
+	player->x = 200;
+	player->y = 200;
+	player->angle = PI / 2;
+	player->key_up = false;
+	player->key_down = false;
+	player->key_right = false;
+	player->key_left = false;
+	player->left_rotate = false;
+	player->right_rotate = false;
 }
