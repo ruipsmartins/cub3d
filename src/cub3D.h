@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/28 13:37:20 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:10:57 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,13 @@ void			init_game(t_game *game);
 void			init_player(t_player *player);
 void			clean_game(t_game *game);
 
-void	img_draw(t_game *game, void *image, int x, int y);
+void			img_draw(t_game *game, void *image, int x, int y);
 
-void draw_map(t_game *game);
-
+void			draw_map(t_game *game);
 
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
-void			move_player(t_player *player);
+void			move_player(t_player *player, t_game *game);
 
 char			**open_map(char *path);
 void			free_map(t_game *game);
