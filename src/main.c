@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/03 16:17:05 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:43:00 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,31 @@ void	ft_put_pixel(int x, int y, int color, t_game *game)
 // our own clear_image function
 void	clear_image(t_game *game)
 {
-	for (int y = 0; y < WINDOW_HEIGHT; y++)
-		for (int x = 0; x < WINDOW_WIDTH; x++)
+	int y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		int x = 0;
+		while (x < WINDOW_WIDTH)
+		{
 			ft_put_pixel(x, y, 0, game);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	draw_square(int x, int y, int size, int color, t_game *game)
 {
-	for (int i = 0; i < size; i++)
+	int i = 0;
+	while (i < size)
 	{
-		for (int j = 0; j < size; j++)
+		int j = 0;
+		while (j < size)
 		{
 			ft_put_pixel(x + i, y + j, color, game);
+			j++;
 		}
+		i++;
 	}
 }
 
@@ -143,7 +155,8 @@ int	draw_loop(t_game *game)
 	if (DEBUG)
 	{
 		draw_map(game);
-		draw_square(player->x, player->y, 40, 0x00FF00, game);
+		//draw_square(player->x, player->y, 20, 0x00FF00, game);
+		img_draw(game, game->player.img, player->x, player->y);
 	}
 	return (0);
 }
