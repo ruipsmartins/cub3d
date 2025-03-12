@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 11:46:41 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:45:43 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	ft_put_pixel(int x, int y, int color, t_game *game)
 	if (x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT || x < 0 || y < 0)
 		return ;
 	index = (x * game->bpp / 8) + (y * game->size_line);
-	game->data[index] = color & 0xFF;
-	game->data[index + 1] = (color & 0xFF00) >> 8;
-	game->data[index + 2] = (color & 0xFF0000) >> 16;
+	game->pixel_buffer[index] = color & 0xFF;
+	game->pixel_buffer[index + 1] = (color & 0xFF00) >> 8;
+	game->pixel_buffer[index + 2] = (color & 0xFF0000) >> 16;
 }
 
 // our own clear_image function
@@ -142,7 +142,7 @@ int	draw_loop(t_game *game)
 	move_player(player, game);
 	clear_image(game);
 
-	img_draw(game, game->img_background,0, 0);
+	//img_draw(game, game->img_background,0, 0);
 	// mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	fraction = PI / 3 / WINDOW_WIDTH;
@@ -157,8 +157,8 @@ int	draw_loop(t_game *game)
 	if (DEBUG)
 	{
 		draw_map(game);
-		//draw_square(player->x, player->y, 20, 0x00FF00, game);
-		img_draw(game, game->player.img, player->x, player->y);
+		draw_square(player->x, player->y, 10, 0x00FF00, game);
+		//img_draw(game, game->player.img, player->x, player->y);
 	}
 	return (0);
 }

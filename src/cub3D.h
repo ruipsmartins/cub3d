@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 11:32:31 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:27:03 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,25 @@ typedef struct s_player
 	bool		right_rotate;
 }				t_player;
 
+
+typedef struct s_img
+{
+	void		*img;
+	int			img_width;
+	int			img_height;
+	int			bpp;
+}	t_img;
+
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	void		*img;
+	int			img_width;
+	int			img_height;
 
-	char		*data;
+	char		*pixel_buffer;
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -65,10 +77,7 @@ typedef struct s_game
 
 	char		**map;
 
-	void		*img_wall;
-	void		*img_background;
-	int			img_width;
-	int			img_height;
+	t_img		*img_wall;
 }				t_game;
 
 void			init_game(t_game *game);
