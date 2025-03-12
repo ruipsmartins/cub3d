@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 10:05:57 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:41:02 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ void	free_map(t_game *game)
 	free(game->map);
 }
 
-static void check_newlines (char *line, char *holder)
-{
-	if (line[0] == '\n')
-	{
-		ft_printf("newline no mapa\n");
-		free(holder);
-		free(line);
-		exit(1);
-	}
-}
+// static void check_newlines (char *line, char *holder)
+// {
+// 	if (line[0] == '\n')
+// 	{
+// 		ft_printf("newline no mapa\n");
+// 		free(holder);
+// 		free(line);
+// 		exit(1);
+// 	}
+//}
 
 void draw_map(t_game *game)
 {
@@ -74,7 +74,7 @@ char	**open_map(char *path)
 		if (!line)
 			break ;
 		holder = map_data;
-		check_newlines(line, holder);
+		//check_newlines(line, holder);
 		map_data = ft_strjoin(holder, line);
 		free(line);
 		free(holder);

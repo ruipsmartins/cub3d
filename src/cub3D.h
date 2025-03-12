@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 11:32:31 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:22:05 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
+# include <stdio.h>
 
 typedef struct s_player
 {
@@ -64,11 +65,21 @@ typedef struct s_game
 	t_player	player;
 
 	char		**map;
+	char		**map_copy;
 
 	void		*img_wall;
 	void		*img_background;
 	int			img_width;
 	int			img_height;
+	
+	char		*path_no;
+	char		*path_so;
+	char		*path_we;
+	char		*path_ea;
+	char 		*color_floor;
+	char		*color_ceiling;
+	
+	
 }				t_game;
 
 void			init_game(t_game *game);
@@ -85,5 +96,9 @@ void			move_player(t_player *player, t_game *game);
 
 char			**open_map(char *path);
 void			free_map(t_game *game);
+
+void			get_textures(t_game *game);
+void	get_rgb(t_game *game);
+void	copy_map(t_game *game);
 
 #endif

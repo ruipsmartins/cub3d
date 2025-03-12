@@ -3,17 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 11:38:02 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:22:25 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
+void	init_texture_and_rgb(t_game *game)
+{
+	game->path_no = NULL;
+	game->path_so = NULL;
+	game->path_we = NULL;
+	game->path_ea = NULL;
+	game->color_floor = NULL;
+	game->color_ceiling = NULL;
+}
+
 void	init_game(t_game *game)
 {
+	init_texture_and_rgb(game);
+	copy_map(game);
+
+	
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	game->img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -37,7 +51,6 @@ void	init_game(t_game *game)
 		ft_putstr_fd("Error\nbackground image not found\n", 2);
 		exit(1);
 	}
-	
 	
 }
 
