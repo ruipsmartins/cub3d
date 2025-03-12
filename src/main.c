@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 13:45:43 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:42:20 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,7 +176,7 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, key_press, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_release, &game);
-	mlx_put_image_to_window(game.mlx, game.win, game.img_wall, 200, 200);
+	mlx_put_image_to_window(game.mlx, game.win, game.img_wall.img, 200, 200);
 	mlx_loop_hook(game.mlx, draw_loop, &game);
 	mlx_loop(game.mlx);
 	return (0);

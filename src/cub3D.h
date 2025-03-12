@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 14:27:03 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:45:43 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
-# define DEBUG 1
+# define DEBUG 0
 
 # define W 119
 # define A 97
@@ -77,7 +77,7 @@ typedef struct s_game
 
 	char		**map;
 
-	t_img		*img_wall;
+	t_img		img_wall;
 }				t_game;
 
 void			init_game(t_game *game);

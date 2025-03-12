@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 14:31:59 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:41:55 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,13 @@ void	init_game(t_game *game)
 	game->pixel_buffer = mlx_get_data_addr(game->img, &game->bpp, &game->size_line, &game->endian);
 	//mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	init_player(&game->player);
+
 	game->player.img = mlx_xpm_file_to_image(game->mlx,
 		"./img/player_s.xpm", &game->player.img_width, &game->player.img_height);
-	if(!game->player.img)
-	{
-		ft_putstr_fd("Error\nPlayer image not found\n", 2);
-		exit(1);
-	}
-	game->img_wall = mlx_xpm_file_to_image(game->mlx,
-		"./img/bricksx64.xpm", &game->img_width, &game->img_height);
+	
+
+	game->img_wall.img = mlx_xpm_file_to_image(game->mlx,
+		"./img/bricksx64.xpm", &game->img_wall.img_width, &game->img_wall.img_height);
 
 	
 	
