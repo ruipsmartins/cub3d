@@ -19,6 +19,9 @@ int        check_map(t_game *game)
 				printf("Error\nInvalid character in map\n");
 				return (1);
 			}
+				//Fix space in map
+			if(game->map_copy[i][k] == ' ')				
+				game->map_copy[i][k] = '1';
 			k++;
 		}
 		i++;
@@ -76,10 +79,22 @@ void	copy_map(t_game *game)
 		i++;
 		j++;
 	}
+	if(game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
+	{
+		printf("Error\nInvalid map\n");
+		exit(1);
+	}
 	game->map_copy[j] = NULL;
 	if (check_map(game))
 	{
 		printf("Error\nInvalid map\n");
 		exit(1);
+	}
+	i = 0;
+	//PRINT MAP
+	while(game->map_copy[i])
+	{
+		printf("%s\n", game->map_copy[i]);
+		i++;
 	}
 }
