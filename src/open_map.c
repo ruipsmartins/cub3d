@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/28 13:24:45 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 10:05:57 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,22 @@ void draw_map(t_game *game)
 	char **map = game->map;
 	int color = 0x0000FF;
 	(void)color;
-	for(int y = 0; map[y]; y++)
-		for(int x = 0; map[y][x]; x++)
-			if(map[y][x] == '1')
+	int y = 0;
+
+	while (map[y])
+	{
+		int x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == '1')
 			{
-				//draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
-				img_draw(game, game->img_wall, x , y );
+				// draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
+				img_draw(game, game->img_wall, x, y);
 			}
+			x++;
+		}
+		y++;
+	}
 }
 
 char	**open_map(char *path)
