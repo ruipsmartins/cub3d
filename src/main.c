@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 10:43:00 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:46:41 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ int	draw_loop(t_game *game)
 	player = &game->player;
 	move_player(player, game);
 	clear_image(game);
+
+	img_draw(game, game->img_background,0, 0);
 	// mlx_clear_window(game->mlx, game->win);
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	fraction = PI / 3 / WINDOW_WIDTH;

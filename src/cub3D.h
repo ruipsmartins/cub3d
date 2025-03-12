@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 11:05:16 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:32:31 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_game
 	char		**map;
 
 	void		*img_wall;
+	void		*img_background;
 	int			img_width;
 	int			img_height;
 }				t_game;

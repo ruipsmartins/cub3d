@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/02/28 12:37:39 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:38:02 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ void	init_game(t_game *game)
 	game->img_wall = mlx_xpm_file_to_image(game->mlx,
 		"./img/bricksx64.xpm", &game->img_width, &game->img_height);
 
-		
+	game->img_background = mlx_xpm_file_to_image(game->mlx,
+	"./img/background.xpm", &game->img_width, &game->img_height);
+	if(!game->img_background)
+	{
+		ft_putstr_fd("Error\nbackground image not found\n", 2);
+		exit(1);
+	}
+	
 	
 }
 
