@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 17:04:00 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/03 16:12:40 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:50:14 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void move_player(t_player *player, t_game *game)
     {
         new_x = (int)(player->x + cos_angle * speed) / 64;
         new_y = (int)(player->y + sin_angle * speed) / 64;
-        if (game->map[new_y][new_x] != '1')
+        if (game->map_copy[new_y][new_x] != '1') //tava map so
         {
             player->x += cos_angle * speed;
             player->y += sin_angle * speed;
@@ -88,7 +88,7 @@ void move_player(t_player *player, t_game *game)
     {
         new_x = (int)(player->x - cos_angle * speed) / 64;
         new_y = (int)(player->y - sin_angle * speed) / 64;
-        if (game->map[new_y][new_x] != '1')
+        if (game->map_copy[new_y][new_x] != '1') //tava map so
         {
             player->x -= cos_angle * speed;
             player->y -= sin_angle * speed;
@@ -98,7 +98,7 @@ void move_player(t_player *player, t_game *game)
     {
         new_x = (int)(player->x + sin_angle * speed) / 64;
         new_y = (int)(player->y - cos_angle * speed) / 64;
-        if (game->map[new_y][new_x] != '1')
+        if (game->map_copy[new_y][new_x] != '1') //tava map so
         {
             player->x += sin_angle * speed;
             player->y -= cos_angle * speed;
@@ -108,7 +108,7 @@ void move_player(t_player *player, t_game *game)
     {
         new_x = (int)(player->x - sin_angle * speed) / 64;
         new_y = (int)(player->y + cos_angle * speed) / 64;
-        if (game->map[new_y][new_x] != '1')
+        if (game->map_copy[new_y][new_x] != '1') //tava map so
         {
             player->x -= sin_angle * speed;
             player->y += cos_angle * speed;

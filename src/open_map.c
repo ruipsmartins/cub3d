@@ -6,7 +6,7 @@
 /*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 15:41:02 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:43:29 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_map(t_game *game)
 
 void draw_map(t_game *game)
 {
-	char **map = game->map;
+	char **map = game->map_copy; //tava map so
 	int color = 0x0000FF;
 	(void)color;
 	int y = 0;

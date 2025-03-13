@@ -6,7 +6,7 @@
 /*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 13:51:24 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:35:13 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,18 @@ bool	touch(float px, float py, t_game *game)
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (game->map[y][x] == '1')
-		return (true);
+	if(game->map_copy)
+	{
+		if(y<0 || x<0)
+			return(1);
+		if (game->map_copy[y] )
+		{
+			if(x <= 0 || y <= 0)
+				printf("x = %d, y = %d\n", x, y); // ESTA A DAR SEGFAULT PQ UM DELES VAI PARA NEGATIVO
+			if (game->map_copy[y][x] == '1') //tava map so
+				return (true);
+		}
+	}
 	return (false);
 }
 
