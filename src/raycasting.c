@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 10:38:55 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:24:35 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 // touch function
 bool	touch(float px, float py, t_game *game)
 {
-	int	x;
-	int	y;
+	float	x;
+	float	y;
 
 	x = px / BLOCK;
 	y = py / BLOCK;
-	if (game->map[y][x] == '1')
+	if (game->map[(int)y][(int)x] == '1')
 		return (true);
 	return (false);
 }

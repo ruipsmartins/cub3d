@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 10:50:28 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:20:50 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,12 @@ typedef struct s_player
 typedef struct s_img
 {
 	void		*img;
-	int			img_width;
-	int			img_height;
+	char		*pixel_buffer; // Buffer de píxeis da imagem
+	int			width;
+	int			height;
 	int			bpp;
+	int			size_line;
+	int			endian;
 }	t_img;
 
 typedef struct s_textures
@@ -74,19 +77,19 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*screen_img;
-	int			img_width;
-	int			img_height;
+	char		**map;
+	t_player	player;
+	t_img		screen_img;
+	t_img		img_wall;
 
+	/* int			img_width;
+	int			img_height;
 	char		*pixel_buffer;
 	int			bpp;
 	int			size_line;
-	int			endian;
-	t_player	player;
+	int			endian; */
 
-	char		**map;
 
-	t_img		img_wall;
 }				t_game;
 
 void			init_game(t_game *game);

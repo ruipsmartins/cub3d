@@ -29,10 +29,10 @@ void	ft_put_pixel(int x, int y, int color, t_game *game)
 
 	if (x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT || x < 0 || y < 0)
 		return ;
-	index = (x * game->bpp / 8) + (y * game->size_line);
-	game->pixel_buffer[index] = color & 0xFF;
-	game->pixel_buffer[index + 1] = (color & 0xFF00) >> 8;
-	game->pixel_buffer[index + 2] = (color & 0xFF0000) >> 16;
+	index = (x * game->screen_img.bpp / 8) + (y * game->screen_img.size_line);
+	game->screen_img.pixel_buffer[index] = color & 0xFF;
+	game->screen_img.pixel_buffer[index + 1] = (color & 0xFF00) >> 8;
+	game->screen_img.pixel_buffer[index + 2] = (color & 0xFF0000) >> 16;
 }
 
 // our own clear_image function

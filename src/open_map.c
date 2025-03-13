@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 10:50:09 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:55:44 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void draw_map(t_game *game)
 		{
 			if (map[y][x] == '1')
 			{
-				// draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
+				//draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
 				ft_put_img(game, game->img_wall.img, x, y);
 			}
 			x++;
