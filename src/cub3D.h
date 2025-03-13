@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 10:46:12 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:50:28 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
-# define DEBUG 0
+# define DEBUG 1
 
 # define W 119
 # define A 97
@@ -94,7 +94,7 @@ void			init_player(t_player *player);
 void			clean_game(t_game *game);
 // utils
 void			draw_square(int x, int y, int size, int color, t_game *game);
-void			img_draw(t_game *game, void *image, int x, int y);
+void			ft_put_img(t_game *game, void *image, int x, int y);
 void			ft_put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);
 
@@ -104,7 +104,7 @@ float			distance(float x, float y);
 float			fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
 void			draw_line(t_player *player, t_game *game, float start_x, int i);
 
-void			img_draw(t_game *game, void *image, int x, int y);
+void			ft_put_img(t_game *game, void *image, int x, int y);
 
 
 void			draw_map(t_game *game);

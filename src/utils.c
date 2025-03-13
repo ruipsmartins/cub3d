@@ -17,7 +17,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game)
 	}
 }
 
-void	img_draw(t_game *game, void *image, int x, int y)
+void	ft_put_img(t_game *game, void *image, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, image, x * 64, y * 64);
 }
