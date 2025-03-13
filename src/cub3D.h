@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 16:45:43 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:46:12 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,21 @@ typedef struct s_img
 	int			bpp;
 }	t_img;
 
+typedef struct s_textures
+{
+	t_img		wall_N;
+	t_img		wall_S;
+	t_img		wall_E;
+	t_img		wall_W;
+	t_img		floor;
+	t_img		ceiling; 
+}	t_textures;
 
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
+	void		*screen_img;
 	int			img_width;
 	int			img_height;
 
@@ -83,8 +92,20 @@ typedef struct s_game
 void			init_game(t_game *game);
 void			init_player(t_player *player);
 void			clean_game(t_game *game);
+// utils
+void			draw_square(int x, int y, int size, int color, t_game *game);
+void			img_draw(t_game *game, void *image, int x, int y);
+void			ft_put_pixel(int x, int y, int color, t_game *game);
+void			clear_image(t_game *game);
+
+// raycasting
+bool			touch(float px, float py, t_game *game);
+float			distance(float x, float y);
+float			fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
+void			draw_line(t_player *player, t_game *game, float start_x, int i);
 
 void			img_draw(t_game *game, void *image, int x, int y);
+
 
 void			draw_map(t_game *game);
 

@@ -4,7 +4,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRCS_DIR = src
-SRCS_FILES = main.c init_game.c clean_game.c player.c open_map.c # move_player.c  map_draw.c open_map.c
+SRCS_FILES = main.c init_game.c clean_game.c player.c open_map.c raycasting.c utils.c
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
 OBJS_DIR = obj

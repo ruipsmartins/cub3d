@@ -6,130 +6,12 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 16:42:20 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:42:15 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
-// our own put_pixel function
-void	ft_put_pixel(int x, int y, int color, t_game *game)
-{
-	int	index;
-
-	if (x >= WINDOW_WIDTH || y >= WINDOW_HEIGHT || x < 0 || y < 0)
-		return ;
-	index = (x * game->bpp / 8) + (y * game->size_line);
-	game->pixel_buffer[index] = color & 0xFF;
-	game->pixel_buffer[index + 1] = (color & 0xFF00) >> 8;
-	game->pixel_buffer[index + 2] = (color & 0xFF0000) >> 16;
-}
-
-// our own clear_image function
-void	clear_image(t_game *game)
-{
-	int y = 0;
-	while (y < WINDOW_HEIGHT)
-	{
-		int x = 0;
-		while (x < WINDOW_WIDTH)
-		{
-			ft_put_pixel(x, y, 0, game);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_square(int x, int y, int size, int color, t_game *game)
-{
-	int i = 0;
-	while (i < size)
-	{
-		int j = 0;
-		while (j < size)
-		{
-			ft_put_pixel(x + i, y + j, color, game);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	img_draw(t_game *game, void *image, int x, int y)
-{
-	mlx_put_image_to_window(game->mlx, game->win, image, x * 64, y * 64);
-}
-
-// touch function
-bool	touch(float px, float py, t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if (game->map[y][x] == '1')
-		return (true);
-	return (false);
-}
-
-// distance calculation functions
-float	distance(float x, float y)
-{
-	return (sqrt(x * x + y * y));
-}
-
-float	fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
-{
-	float	delta_x;
-	float	delta_y;
-	float	angle;
-	float	fix_dist;
-
-	delta_x = x2 - x1;
-	delta_y = y2 - y1;
-	angle = atan2(delta_y, delta_x) - game->player.angle;
-	fix_dist = distance(delta_x, delta_y) * cos(angle);
-	return (fix_dist);
-}
-
-// raycasting functions
-void	draw_line(t_player *player, t_game *game, float start_x, int i)
-{
-	float	cos_angle;
-	float	sin_angle;
-	float	ray_x;
-	float	ray_y;
-	float	dist;
-	float	height;
-	int		start_y;
-	int		end;
-
-	cos_angle = cos(start_x);
-	sin_angle = sin(start_x);
-	ray_x = player->x;
-	ray_y = player->y;
-	while (!touch(ray_x, ray_y, game))
-	{
-		if (DEBUG)
-			ft_put_pixel(ray_x, ray_y, 0xFF0000, game);
-		ray_x += cos_angle;
-		ray_y += sin_angle;
-	}
-	if (!DEBUG)
-	{
-		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
-		height = (BLOCK / dist) * (WINDOW_WIDTH / 2);
-		start_y = (WINDOW_HEIGHT - height) / 2;
-		end = start_y + height;
-		while (start_y < end)
-		{
-			ft_put_pixel(i, start_y, 200, game);
-			start_y++;
-		}
-	}
-}
 
 int	draw_loop(t_game *game)
 {
@@ -144,7 +26,7 @@ int	draw_loop(t_game *game)
 
 	//img_draw(game, game->img_background,0, 0);
 	// mlx_clear_window(game->mlx, game->win);
-	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->screen_img, 0, 0);
 	fraction = PI / 3 / WINDOW_WIDTH;
 	start_x = player->angle - PI / 6;
 	i = 0;
@@ -158,7 +40,6 @@ int	draw_loop(t_game *game)
 	{
 		draw_map(game);
 		draw_square(player->x, player->y, 10, 0x00FF00, game);
-		//img_draw(game, game->player.img, player->x, player->y);
 	}
 	return (0);
 }
