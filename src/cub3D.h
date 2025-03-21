@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/12 14:22:05 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:32:56 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,43 @@ typedef struct s_player
 	bool		right_rotate;
 }				t_player;
 
+
+typedef struct s_img
+{
+	void		*img;
+	char		*pixel_buffer; // Buffer de píxeis da imagem
+	int			width;
+	int			height;
+	int			bpp;
+	int			size_line;
+	int			endian;
+}	t_img;
+
+typedef struct s_textures
+{
+	t_img		wall_N;
+	t_img		wall_S;
+	t_img		wall_E;
+	t_img		wall_W;
+	t_img		floor;
+	t_img		ceiling; 
+}	t_textures;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
+	char		**map;
+	t_player	player;
+	t_img		screen_img;
+	t_img		img_wall;
 
-	char		*data;
+	/* int			img_width;
+	int			img_height;
+	char		*pixel_buffer;
 	int			bpp;
 	int			size_line;
-	int			endian;
-	t_player	player;
+	int			endian; */
 
 	char		**map;
 	char		**map_copy;
@@ -85,8 +111,20 @@ typedef struct s_game
 void			init_game(t_game *game);
 void			init_player(t_player *player);
 void			clean_game(t_game *game);
+// utils
+void			draw_square(int x, int y, int size, int color, t_game *game);
+void			ft_put_img(t_game *game, void *image, int x, int y);
+void			ft_put_pixel(int x, int y, int color, t_game *game);
+void			clear_image(t_game *game);
 
-void			img_draw(t_game *game, void *image, int x, int y);
+// raycasting
+bool			touch(float px, float py, t_game *game);
+float			distance(float x, float y);
+float			fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
+void			draw_line(t_player *player, t_game *game, float start_x, int i);
+
+void			ft_put_img(t_game *game, void *image, int x, int y);
+
 
 void			draw_map(t_game *game);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 11:43:29 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:34:59 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void draw_map(t_game *game)
 		{
 			if (map[y][x] == '1')
 			{
-				// draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
-				img_draw(game, game->img_wall, x, y);
+				//draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
+				ft_put_img(game, game->img_wall.img, x, y);
 			}
 			x++;
 		}
