@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 11:32:56 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:37:08 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	char		**map;
 	t_player	player;
 	t_img		screen_img;
 	t_img		img_wall;
@@ -93,7 +92,6 @@ typedef struct s_game
 	char		**map;
 	char		**map_copy;
 
-	void		*img_wall;
 	void		*img_background;
 	int			img_width;
 	int			img_height;
