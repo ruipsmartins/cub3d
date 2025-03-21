@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 16:21:51 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 19:31:15 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ typedef struct s_game
 	char		*path_so;
 	char		*path_we;
 	char		*path_ea;
-	char 		*color_floor;
-	char		*color_ceiling;
+	int 		color_floor;
+	int			color_ceiling;
 	
 	
 }				t_game;
@@ -117,9 +117,11 @@ void			draw_square(int x, int y, int size, int color, t_game *game);
 void			ft_put_img(t_game *game, void *image, int x, int y);
 void			ft_put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);
+int				rgb_str_to_hex(char *rgb_str);
+void get_floor_color(t_game *game, char *line);
 
-// raycasting
-bool			touch(float px, float py, t_game *game);
+	// raycasting
+	bool touch(float px, float py, t_game *game);
 float			distance(float x, float y);
 float			fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
 void			draw_line(t_player *player, t_game *game, float start_x, int i);

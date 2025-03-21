@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 11:33:28 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/21 18:57:55 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	init_texture_and_rgb(t_game *game)
 	game->path_so = NULL;
 	game->path_we = NULL;
 	game->path_ea = NULL;
-	game->color_floor = NULL;
-	game->color_ceiling = NULL;
+	game->color_floor = -1;
+	game->color_ceiling = -1;
 }
 
 void	init_game(t_game *game)

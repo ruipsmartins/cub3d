@@ -47,9 +47,9 @@ void	clear_image(t_game *game)
 		int color;
 
 		if (y < WINDOW_HEIGHT / 2)
-			color = 0x87CEEB; // Azul claro para o teto
+			color = game->color_ceiling; // Azul claro para o teto
 		else
-			color = 0x5e3020; // Castanho para o chão
+			color = game->color_floor; // Castanho para o chão
 
 		while (x < WINDOW_WIDTH)
 		{
