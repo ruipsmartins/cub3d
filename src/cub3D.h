@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 13:37:21 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 14:14:06 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
-# define DEBUG 0
+# define DEBUG 1
 
 # define W 119
 # define A 97
@@ -24,6 +24,8 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
+# define PLAYER_RADIUS 5  // Define um raio para o jogador
+
 
 # define PI 3.14159265359
 
