@@ -3,45 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 12:19:01 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/21 13:50:52 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
-bool touch(float px, float py, t_game *game)
+/* bool touch(float px, float py, t_game *game)
 {
 	float x;
 	float y;
-	float epsilon = 0.0001;
+	float epsilon = 0.01;
 
 	x = px / BLOCK;
 	y = py / BLOCK;
 	if (game->map_copy[(int)(y + epsilon)][(int)(x + epsilon)] == '1' ||
 	game->map_copy[(int)(y - epsilon)][(int)(x + epsilon)] == '1' ||
 	game->map_copy[(int)(y + epsilon)][(int)(x - epsilon)] == '1' ||
-	game->map_copy[(int)(y - epsilon)][(int)(x - epsilon)] == '1')// ||
-	// game->map_copy[(int)y][(int)(x + epsilon)] == '1' ||
-	// game->map_copy[(int)y][(int)(x - epsilon)] == '1' ||
-	// game->map_copy[(int)(y + epsilon)][(int)x] == '1' ||
-	// game->map_copy[(int)(y - epsilon)][(int)x] == '1')
+	game->map_copy[(int)(y - epsilon)][(int)(x - epsilon)] == '1' ||
+	game->map_copy[(int)y][(int)(x + epsilon)] == '1' ||
+	game->map_copy[(int)y][(int)(x - epsilon)] == '1' ||
+	game->map_copy[(int)(y + epsilon)][(int)x] == '1' ||
+	game->map_copy[(int)(y - epsilon)][(int)x] == '1')
 		return (true);
 	return (false);
-}
-// bool touch(float px, float py, t_game *game)
-// {
-// 	float x;
-// 	float y;
+} */
+bool touch(float px, float py, t_game *game)
+{
+	float x;
+	float y;
 
-// 	x = px / BLOCK;
-// 	y = py / BLOCK;
-// 	if (game->map_copy[(int)y][(int)x] == '1') // tenho de meter parede a volta do mapa, se sair fora da seg
-// 		return (true);
-// 	return (false);
-// }
+ 	x = px / BLOCK;
+ 	y = py / BLOCK;
+ 	if (game->map_copy[(int)y][(int)x] == '1') // tenho de meter parede a volta do mapa, se sair fora da seg
+ 		return (true);
+ 	return (false);
+}
 
 // distance calculation functions
 float distance(float x, float y)
@@ -94,8 +94,8 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 	delta_dist_y = fabs(1 / sin_angle);
 	step_x = (cos_angle < 0) ? -1 : 1;
 	step_y = (sin_angle < 0) ? -1 : 1;
-	side_dist_x = (cos_angle < 0) ? (ray_x - (int)ray_x) * delta_dist_x : ((int)ray_x + 1.0 - ray_x) * delta_dist_x;
-	side_dist_y = (sin_angle < 0) ? (ray_y - (int)ray_y) * delta_dist_y : ((int)ray_y + 1.0 - ray_y) * delta_dist_y;
+	side_dist_x = (cos_angle < 0) ? (ray_x - (int)ray_x) * delta_dist_x : ((int)ray_x + 1 - ray_x) * delta_dist_x;
+	side_dist_y = (sin_angle < 0) ? (ray_y - (int)ray_y) * delta_dist_y : ((int)ray_y + 1  - ray_y) * delta_dist_y;
 
 	hit = 0;
 	while (!hit)
@@ -118,13 +118,13 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 
 	// Calculate the perpendicular distance to avoid fish-eye effect
 	if (side == 0)
-		dist = (ray_x - player->x + (1 - step_x) / 2) / cos_angle;
+		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
 	else
-		dist = (ray_y - player->y + (1 - step_y) / 2) / sin_angle;
+		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
 
 	// Correct for fish-eye effect by multiplying by the cosine of the relative angle
-	float relative_angle = ray_angle - player->angle;
-	dist *= cos(relative_angle);
+	//float relative_angle = ray_angle - player->angle;
+	//dist *= cos(relative_angle);
 
 	// Calculate wall height
 	height = (BLOCK / dist) * (WINDOW_WIDTH / 2);
