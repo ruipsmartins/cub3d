@@ -1,13 +1,15 @@
 
 #include "./cub3D.h"
 
-
 void	draw_square(int x, int y, int size, int color, t_game *game)
 {
-	int i = 0;
+	int	i;
+	int	j;
+
+	i = 0;
 	while (i < size)
 	{
-		int j = 0;
+		j = 0;
 		while (j < size)
 		{
 			ft_put_pixel(x + i, y + j, color, game);
@@ -42,9 +44,16 @@ void	clear_image(t_game *game)
 	while (y < WINDOW_HEIGHT)
 	{
 		int x = 0;
+		int color;
+
+		if (y < WINDOW_HEIGHT / 2)
+			color = 0x87CEEB; // Azul claro para o teto
+		else
+			color = 0x5e3020; // Castanho para o chão
+
 		while (x < WINDOW_WIDTH)
 		{
-			ft_put_pixel(x, y, 0, game);
+			ft_put_pixel(x, y, color, game);
 			x++;
 		}
 		y++;

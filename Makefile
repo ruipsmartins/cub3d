@@ -57,6 +57,6 @@ git:
 	git status
 
 valgrind:
-	valgrind --show-leak-kinds=all --leak-check=full ./cub3D
+	valgrind --show-leak-kinds=all --leak-check=full ./cub3D maps/map.ber
 
 .PHONY: all clean fclean re git valgrind

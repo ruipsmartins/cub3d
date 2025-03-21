@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 15:01:26 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:19:22 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	main(int argc, char **argv)
 	init_game(&game);
 	get_textures(&game);
 	get_rgb(&game);
+	
+	mlx_hook(game.win, DestroyNotify, NoEventMask, clean_game, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, key_press, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_release, &game);
 	mlx_put_image_to_window(game.mlx, game.win, game.img_wall.img, 200, 200);

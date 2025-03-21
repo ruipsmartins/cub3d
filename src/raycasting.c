@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 14:04:59 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:16:19 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 	// Draw the wall slice
 	while (start_y < end)
 	{
-		ft_put_pixel(i, start_y, 0x0a9c86, game);
+		ft_put_pixel(i, start_y, 0x1E3A5F, game);
 		start_y++;
 	}
 }

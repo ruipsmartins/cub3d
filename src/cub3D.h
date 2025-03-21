@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 14:51:18 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:21:51 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_game
 
 void			init_game(t_game *game);
 void			init_player(t_player *player);
-void			clean_game(t_game *game);
+int				clean_game(t_game *game);
 // utils
 void			draw_square(int x, int y, int size, int color, t_game *game);
 void			ft_put_img(t_game *game, void *image, int x, int y);

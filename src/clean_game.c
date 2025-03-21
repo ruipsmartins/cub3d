@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:59:24 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/13 11:37:18 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:21:30 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 
-void	clean_game(t_game *game)
+int	clean_game(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->screen_img.img);
 	mlx_destroy_image(game->mlx, game->img_wall.img);
