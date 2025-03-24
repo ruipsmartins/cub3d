@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/24 16:52:17 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/24 17:03:41 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,7 @@ typedef struct s_game
 	void		*win;
 	t_player	player;
 	t_img		screen_img;
-	t_img		img_wall;
 	t_textures	textures;
-
-	/* int			img_width;
-	int			img_height;
-	char		*pixel_buffer;
-	int			bpp;
-	int			size_line;
-	int			endian; */
 
 	char		**map;
 	char		**map_copy;
