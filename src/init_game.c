@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/24 14:39:47 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:56:30 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ void	init_texture_and_rgb(t_game *game)
 	game->color_ceiling = -1;
 }
 
+
+void load_texture(t_game *game, t_img *texture, char *path)
+{
+	texture->img = mlx_xpm_file_to_image(game->mlx, path, &texture->width, &texture->height);
+	if (!texture->img)
+	{
+		printf("Erro ao carregar a textura %s\n", path);
+		exit(1);
+	}
+	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
+}
+
+
 void	init_game(t_game *game)
 {
 	init_texture_and_rgb(game);
@@ -35,11 +48,10 @@ void	init_game(t_game *game)
 	//mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	init_player(&game->player);
 
-		// textura da parede apenas para testar
-	game->img_wall.img = mlx_xpm_file_to_image(game->mlx,
-		"./img/bricksx64.xpm", &game->img_wall.width, &game->img_wall.height);
-	game->img_wall.pixel_buffer = mlx_get_data_addr(game->img_wall.img, &game->img_wall.bpp, &game->img_wall.size_line, &game->img_wall.endian);
-	
+	// textura da parede apenas para testar
+	load_texture(game, &game->img_wall, "./img/n_texture.xpm");
+	//load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
+	//load_texture(game, &game->textures.wall_N, game->path_no);
 }
 
 void	init_player(t_player *player)

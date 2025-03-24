@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 16:16:19 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:50:47 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,6 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 	else
 		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
 
-	// Correct for fish-eye effect by multiplying by the cosine of the relative angle
-	//float relative_angle = ray_angle - player->angle;
-	//dist *= cos(relative_angle);
-
 	// Calculate wall height
 	height = (BLOCK / dist) * (WINDOW_WIDTH / 2);
 	start_y = (WINDOW_HEIGHT - height) / 2;
@@ -144,3 +140,4 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		start_y++;
 	}
 }
+

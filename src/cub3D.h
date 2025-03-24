@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 19:31:15 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:52:17 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
-# define DEBUG 0
+# define DEBUG 1
 
 # define W 119
 # define A 97
@@ -24,8 +24,7 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
-# define PLAYER_RADIUS 5  // Define um raio para o jogador
-
+# define PLAYER_RADIUS 5 // Define um raio para o jogador
 
 # define PI 3.14159265359
 
@@ -35,15 +34,13 @@
 # include <X11/keysym.h>
 # include <math.h>
 # include <stdio.h>
-#include <sys/time.h>
+# include <sys/time.h>
 
 typedef struct s_player
 {
 	float		x;
 	float		y;
 	float		angle;
-
-	void		*img;
 	int			img_width;
 	int			img_height;
 	bool		key_up;
@@ -55,17 +52,16 @@ typedef struct s_player
 	bool		right_rotate;
 }				t_player;
 
-
 typedef struct s_img
 {
 	void		*img;
-	char		*pixel_buffer; // Buffer de píxeis da imagem
+	char *pixel_buffer; // Buffer de píxeis da imagem
 	int			width;
 	int			height;
 	int			bpp;
 	int			size_line;
 	int			endian;
-}	t_img;
+}				t_img;
 
 typedef struct s_textures
 {
@@ -74,8 +70,8 @@ typedef struct s_textures
 	t_img		wall_E;
 	t_img		wall_W;
 	t_img		floor;
-	t_img		ceiling; 
-}	t_textures;
+	t_img		ceiling;
+}				t_textures;
 
 typedef struct s_game
 {
@@ -84,6 +80,7 @@ typedef struct s_game
 	t_player	player;
 	t_img		screen_img;
 	t_img		img_wall;
+	t_textures	textures;
 
 	/* int			img_width;
 	int			img_height;
@@ -98,15 +95,14 @@ typedef struct s_game
 	void		*img_background;
 	int			img_width;
 	int			img_height;
-	
+
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
 	char		*path_ea;
-	int 		color_floor;
+	int			color_floor;
 	int			color_ceiling;
-	
-	
+
 }				t_game;
 
 void			init_game(t_game *game);
@@ -118,16 +114,16 @@ void			ft_put_img(t_game *game, void *image, int x, int y);
 void			ft_put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);
 int				rgb_str_to_hex(char *rgb_str);
-void get_floor_color(t_game *game, char *line);
+void			get_floor_color(t_game *game, char *line);
 
-	// raycasting
-	bool touch(float px, float py, t_game *game);
+// raycasting
+bool			touch(float px, float py, t_game *game);
 float			distance(float x, float y);
-float			fixed_dist(float x1, float y1, float x2, float y2, t_game *game);
+float			fixed_dist(float x1, float y1, float x2, float y2,
+					t_game *game);
 void			draw_line(t_player *player, t_game *game, float start_x, int i);
 
 void			ft_put_img(t_game *game, void *image, int x, int y);
-
 
 void			draw_map(t_game *game);
 
@@ -139,7 +135,7 @@ char			**open_map(char *path);
 void			free_map(t_game *game);
 
 void			get_textures(t_game *game);
-void	get_rgb(t_game *game);
-void	copy_map(t_game *game);
+void			get_rgb(t_game *game);
+void			copy_map(t_game *game);
 
 #endif
