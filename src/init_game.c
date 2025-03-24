@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/21 18:57:55 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/24 14:39:47 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	init_game(t_game *game)
 	//mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	init_player(&game->player);
 
+		// textura da parede apenas para testar
 	game->img_wall.img = mlx_xpm_file_to_image(game->mlx,
 		"./img/bricksx64.xpm", &game->img_wall.width, &game->img_wall.height);
+	game->img_wall.pixel_buffer = mlx_get_data_addr(game->img_wall.img, &game->img_wall.bpp, &game->img_wall.size_line, &game->img_wall.endian);
 	
 }
 
