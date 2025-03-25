@@ -86,6 +86,11 @@ void	copy_map(t_game *game)
 {
 	int i = skip_def(game);
 	int j = 0;
+	int len = i;
+	while(game->map[len])
+		len++;
+	
+	//malloc(sizeof(char *) * (len + 1));
 	while(game->map[i] && (game->map[i][0] == '1' || game->map[i][0] == ' '))
 	{
 		game->map_copy[j] = ft_strdup(game->map[i]);

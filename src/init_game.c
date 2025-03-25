@@ -6,7 +6,7 @@
 /*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 11:41:36 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:47:14 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,113 @@ void	init_game(t_game *game)
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
-	init_player(&game->player);
+	init_player(game);
 
 	// textura da parede apenas para testar
 //	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
 	load_texture(game, &game->textures.wall_N, game->path_no);
 }
 
-// void	find_player(t_game *game)
-// {
-// 	int x;
-// 	int y;
-
-
-// }
-
-void	init_player(t_player *player)
+void	map_len(t_game *game)
 {
-	player->x = 200;
-	player->y = 200;
-	player->angle = PI / 2;
-	player->key_up = false;
-	player->key_down = false;
-	player->key_right = false;
-	player->key_left = false;
-	player->left_rotate = false;
-	player->right_rotate = false;
+	int size;
+	int i;
+
+	i = 0;
+	size = ft_strlen(game->map[i]);
+	while(game->map[i])
+	{
+		if ((int)ft_strlen(game->map[i]) > size)
+			size = ft_strlen(game->map[i]);
+		i++;
+	}
+
+	game->map_len = size;
+}
+
+void	map_height(t_game *game)
+{
+	int i;
+
+	i = 0;
+	while(game->map[i])
+		i++;
+	game->map_height = i;
+}
+
+void	find_player_pos(t_game *game)
+{
+	int x;
+	int y;
+	
+	y = 0;
+	game->player.x = 0;
+	game->player.y = 0;
+	
+	while(y <= game->map_height)
+	{
+		x = 0;
+		if(!game->map_copy[y])
+			break;
+		while(game->map_copy[y][x])
+		{
+			if (game->map_copy[y][x] == 'N' || game->map_copy[y][x] == 'S' ||
+			 game->map_copy[y][x] == 'W' || game->map_copy[y][x] == 'E')
+			{
+				if (game->player.x)
+				{
+					printf("Error\nPlayer positions\n");
+					exit(1);
+				}
+				printf("x: %d y: %d\n", x, y);
+				game->player.x = x;
+				game->player.y = y;
+			}
+			x++;
+		}
+		
+		y++;
+	}
+
+}
+void	find_player_angle(t_game *game)
+{
+	game->player.angle = -1;
+	if(game->player.x == 0 || game->player.y == 0)
+	{
+		printf("Error\nNo player position found\n");
+		exit(1);
+	}
+	printf("x: %f y: %f\n", game->player.x, game->player.y);
+	if (game->map_copy[(int)game->player.y][(int)game->player.x] == 'N')
+		game->player.angle = 3 * PI / 2;
+	else if (game->map_copy[(int)game->player.y][(int)game->player.x] == 'S')
+		game->player.angle = PI / 2;
+	else if (game->map_copy[(int)game->player.y][(int)game->player.x] == 'W')
+		game->player.angle = PI;
+	else if (game->map_copy[(int)game->player.y][(int)game->player.x] == 'E')
+		game->player.angle = 0;
+	printf("angle: %f\n", game->player.angle);
+	if(game->player.angle == -1)
+	{
+		printf("x: %d y: %d\n", (int)game->player.x, (int)game->player.y);
+		printf("map: %c\n", game->map_copy[(int)game->player.y][(int)game->player.x]);
+		printf("Error\nInvalid player position\n");
+		exit(1);
+	}
+	game->player.x *= BLOCK;
+	game->player.y *= BLOCK;
+}
+
+
+void	init_player(t_game *game)
+{
+	find_player_pos(game);
+	find_player_angle(game);
+	game->player.key_up = false;
+	game->player.key_down = false;
+	game->player.key_right = false;
+	game->player.key_left = false;
+	game->player.left_rotate = false;
+	game->player.right_rotate = false;
 }

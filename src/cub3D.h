@@ -6,7 +6,7 @@
 /*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 11:19:12 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:31:57 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,12 @@ typedef struct s_game
 
 	char		**map;
 	char		**map_copy;
-
+	
 	void		*img_background;
 	int			img_width;
 	int			img_height;
-
+	int			map_len;
+	int			map_height;	
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
@@ -98,7 +99,7 @@ typedef struct s_game
 }				t_game;
 
 void			init_game(t_game *game);
-void			init_player(t_player *player);
+void			init_player(t_game *game);
 int				clean_game(t_game *game);
 // utils
 void			draw_square(int x, int y, int size, int color, t_game *game);

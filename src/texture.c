@@ -31,6 +31,11 @@ void	get_textures(t_game *game)
 	i = 0;
 	while(game->map[i])
 	{
+		if ((game->map[i][0] == 'N' && game->map[i][1] == 'O' && game->path_no != NULL) ||
+			(game->map[i][0] == 'S' && game->map[i][1] == 'O' && game->path_so != NULL) ||
+			(game->map[i][0] == 'W' && game->map[i][1] == 'E' && game->path_we != NULL) ||
+			(game->map[i][0] == 'E' && game->map[i][1] == 'A' && game->path_ea != NULL))
+			ft_printf("Error\nDuplicate texture\n");
 		if (game->map[i][0] == 'N' && game->map[i][1] == 'O' && game->path_no == NULL)
 			get_north_texture(game, game->map[i]);
 		else if (game->map[i][0] == 'S' && game->map[i][1] == 'O' && game->path_so == NULL)
@@ -39,11 +44,7 @@ void	get_textures(t_game *game)
 			get_west_texture(game, game->map[i]);
 		else if (game->map[i][0] == 'E' && game->map[i][1] == 'A' && game->path_ea == NULL)
 			get_east_texture(game, game->map[i]);
-		else if ((game->map[i][0] == 'N' && game->map[i][1] == 'O' && game->path_no != NULL) ||
-			(game->map[i][0] == 'S' && game->map[i][1] == 'O' && game->path_so != NULL) ||
-			(game->map[i][0] == 'W' && game->map[i][1] == 'E' && game->path_we != NULL) ||
-			(game->map[i][0] == 'E' && game->map[i][1] == 'A' && game->path_ea != NULL))
-			ft_printf("Error\nDuplicate texture\n");
+		
 		i++;
 	}
 	if (game->path_no == NULL || game->path_so == NULL || game->path_we == NULL || game->path_ea == NULL)
