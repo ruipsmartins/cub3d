@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/24 16:50:47 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:04:22 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,15 @@ float fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
 	angle = atan2(delta_y, delta_x) - game->player.angle;
 	fix_dist = distance(delta_x, delta_y) * cos(angle);
 	return (fix_dist);
+}
+
+int get_texture_pixel(t_img *texture, int x, int y)
+{
+	if (x < 0 || x >= texture->width || y < 0 || y >= texture->height)
+		return (0); // Cor preta se estiver fora dos limites
+
+	char *pixel = texture->pixel_buffer + (y * texture->size_line + x * (texture->bpp / 8));
+	return (*(unsigned int *)pixel);
 }
 
 // raycasting functions with DDA algorithm
@@ -136,8 +145,30 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 	// Draw the wall slice
 	while (start_y < end)
 	{
-		ft_put_pixel(i, start_y, 0x1E3A5F, game);
-		start_y++;
+		int color;
+		int texture_x;
+		int texture_y;
+
+		// Mapeamento correto da posição X na textura (horizontal)
+		texture_x = (int)(ray_x) % game->textures.wall_N.width;
+
+		// Calcular o "step" para percorrer a textura uniformemente
+		float texture_step = (float)game->textures.wall_N.height / height;
+
+		// Definir a posição inicial na textura
+		float texture_pos = (start_y - (WINDOW_HEIGHT - height) / 2) * texture_step;
+
+		// Percorrer os píxeis verticais e desenhá-los corretamente
+		while (start_y < end)
+		{
+			texture_y = (int)texture_pos % game->textures.wall_N.height;
+			color = get_texture_pixel(&game->textures.wall_N, texture_x, texture_y);
+			ft_put_pixel(i, start_y, color, game);
+			
+			// Avançar na textura de forma proporcional
+			texture_pos += texture_step;
+			start_y++;
+		}
 	}
 }
 
