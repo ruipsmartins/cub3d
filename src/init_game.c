@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 11:41:36 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/25 13:39:48 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	init_game(t_game *game)
 	// textura da parede apenas para testar
 //	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
 	load_texture(game, &game->textures.wall_N, game->path_no);
+	load_texture(game, &game->textures.wall_S, game->path_so);
+	load_texture(game, &game->textures.wall_W, game->path_we);
+	load_texture(game, &game->textures.wall_E, game->path_ea);
 }
 
 // void	find_player(t_game *game)

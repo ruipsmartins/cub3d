@@ -6,31 +6,12 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 11:04:22 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:17:55 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
-/* bool touch(float px, float py, t_game *game)
-{
-	float x;
-	float y;
-	float epsilon = 0.01;
-
-	x = px / BLOCK;
-	y = py / BLOCK;
-	if (game->map_copy[(int)(y + epsilon)][(int)(x + epsilon)] == '1' ||
-	game->map_copy[(int)(y - epsilon)][(int)(x + epsilon)] == '1' ||
-	game->map_copy[(int)(y + epsilon)][(int)(x - epsilon)] == '1' ||
-	game->map_copy[(int)(y - epsilon)][(int)(x - epsilon)] == '1' ||
-	game->map_copy[(int)y][(int)(x + epsilon)] == '1' ||
-	game->map_copy[(int)y][(int)(x - epsilon)] == '1' ||
-	game->map_copy[(int)(y + epsilon)][(int)x] == '1' ||
-	game->map_copy[(int)(y - epsilon)][(int)x] == '1')
-		return (true);
-	return (false);
-} */
 bool touch(float px, float py, t_game *game)
 {
 	float x;
@@ -49,6 +30,7 @@ float distance(float x, float y)
 	return (sqrt(x * x + y * y));
 }
 
+// Calculate the perpendicular distance to avoid fish-eye effect
 float fixed_dist(float x1, float y1, float x2, float y2, t_game *game)
 {
 	float delta_x;
@@ -126,10 +108,10 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 	}
 
 	// Calculate the perpendicular distance to avoid fish-eye effect
-	if (side == 0)
+	//if (side == 0)
 		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
-	else
-		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game);
+	/* else
+		dist = fixed_dist(player->x, player->y, ray_x, ray_y, game); */
 
 	// Calculate wall height
 	height = (BLOCK / dist) * (WINDOW_WIDTH / 2);
@@ -149,11 +131,30 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		int texture_x;
 		int texture_y;
 
+		t_img wall;
+		if (side == 1) // Parede Norte ou Sul
+		{
+			if (step_y == -1)
+				wall = game->textures.wall_N;
+			else
+				wall = game->textures.wall_S;
+		}
+		else // Parede Este ou Oeste
+		{
+			if (step_x == -1)
+				wall = game->textures.wall_W;
+			else
+				wall = game->textures.wall_E;
+		}		
+
 		// Mapeamento correto da posição X na textura (horizontal)
-		texture_x = (int)(ray_x) % game->textures.wall_N.width;
+		if (side == 0) // Parede vertical (Norte ou Sul)
+    	texture_x = (int)(ray_y) % game->textures.wall_N.width;
+		else // Parede horizontal (Este ou Oeste)
+    	texture_x = (int)(ray_x) % game->textures.wall_E.width;
 
 		// Calcular o "step" para percorrer a textura uniformemente
-		float texture_step = (float)game->textures.wall_N.height / height;
+		float texture_step = (float)wall.height / height;
 
 		// Definir a posição inicial na textura
 		float texture_pos = (start_y - (WINDOW_HEIGHT - height) / 2) * texture_step;
@@ -161,10 +162,9 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		// Percorrer os píxeis verticais e desenhá-los corretamente
 		while (start_y < end)
 		{
-			texture_y = (int)texture_pos % game->textures.wall_N.height;
-			color = get_texture_pixel(&game->textures.wall_N, texture_x, texture_y);
+			texture_y = (int)texture_pos % wall.height;
+			color = get_texture_pixel(&wall, texture_x, texture_y);
 			ft_put_pixel(i, start_y, color, game);
-			
 			// Avançar na textura de forma proporcional
 			texture_pos += texture_step;
 			start_y++;
