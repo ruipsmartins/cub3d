@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 14:17:55 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:11:51 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		int color;
 		int texture_x;
 		int texture_y;
+		int teste = 0;
 
 		t_img wall;
 		if (side == 1) // Parede Norte ou Sul
@@ -137,21 +138,27 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 			if (step_y == -1)
 				wall = game->textures.wall_N;
 			else
+			{
 				wall = game->textures.wall_S;
+				teste = 1;
+			}
 		}
 		else // Parede Este ou Oeste
 		{
 			if (step_x == -1)
 				wall = game->textures.wall_W;
 			else
+			{
 				wall = game->textures.wall_E;
+				teste = 1;
+			}
 		}		
 
 		// Mapeamento correto da posição X na textura (horizontal)
 		if (side == 0) // Parede vertical (Norte ou Sul)
-    	texture_x = (int)(ray_y) % game->textures.wall_N.width;
+    		texture_x = (int)(ray_y) % wall.width;
 		else // Parede horizontal (Este ou Oeste)
-    	texture_x = (int)(ray_x) % game->textures.wall_E.width;
+    		texture_x = (int)(ray_x) % wall.width;
 
 		// Calcular o "step" para percorrer a textura uniformemente
 		float texture_step = (float)wall.height / height;
@@ -160,6 +167,7 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		float texture_pos = (start_y - (WINDOW_HEIGHT - height) / 2) * texture_step;
 
 		// Percorrer os píxeis verticais e desenhá-los corretamente
+		
 		while (start_y < end)
 		{
 			texture_y = (int)texture_pos % wall.height;

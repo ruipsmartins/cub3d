@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 13:39:48 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:32:38 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void load_texture(t_game *game, t_img *texture, char *path)
 	if (!texture->img)
 	{
 		printf("Erro ao carregar a textura %s\n", path);
+		//clean_game(game); melhorar clean game para nao dar seg fault, apenas limpar o que j'a foi alucado
 		exit(1);
 	}
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
@@ -42,17 +43,16 @@ void	init_game(t_game *game)
 	get_textures(game);
 	get_rgb(game);
 	game->mlx = mlx_init();
+	// ver leaks quando o jogo sai depois de nao conseguir abrir as textures
+	load_texture(game, &game->textures.wall_N, game->path_no);
+	load_texture(game, &game->textures.wall_S, game->path_so);
+	load_texture(game, &game->textures.wall_W, game->path_we);
+	load_texture(game, &game->textures.wall_E, game->path_ea);
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
 	init_player(&game->player);
 
-	// textura da parede apenas para testar
-//	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
-	load_texture(game, &game->textures.wall_N, game->path_no);
-	load_texture(game, &game->textures.wall_S, game->path_so);
-	load_texture(game, &game->textures.wall_W, game->path_we);
-	load_texture(game, &game->textures.wall_E, game->path_ea);
 }
 
 // void	find_player(t_game *game)
