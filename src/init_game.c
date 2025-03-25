@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/24 17:04:18 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:41:36 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	init_game(t_game *game)
 {
 	init_texture_and_rgb(game);
 	copy_map(game);
-
+	get_textures(game);
+	get_rgb(game);
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -47,9 +48,17 @@ void	init_game(t_game *game)
 	init_player(&game->player);
 
 	// textura da parede apenas para testar
-	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
-	//load_texture(game, &game->textures.wall_N, game->path_no);
+//	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
+	load_texture(game, &game->textures.wall_N, game->path_no);
 }
+
+// void	find_player(t_game *game)
+// {
+// 	int x;
+// 	int y;
+
+
+// }
 
 void	init_player(t_player *player)
 {

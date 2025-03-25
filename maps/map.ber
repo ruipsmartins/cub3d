@@ -1,13 +1,12 @@
-NO ./img/n_texture
+NO ./img/n_texture.xpm
 SO ./path_to_the_south_texture
 WE ./path_to_the_west_texture
 EA ./path_to_the_east_texture
 
-F 220,100,0
+F 2a20,100,0
 C 10,0,110
 
-
-     1111111111111111111111111
+     11111111111111111
 11111000000        000000111111
 10000000001000000000000000001
 10100101001001000010000010111

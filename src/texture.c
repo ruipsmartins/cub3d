@@ -48,4 +48,6 @@ void	get_textures(t_game *game)
 	}
 	if (game->path_no == NULL || game->path_so == NULL || game->path_we == NULL || game->path_ea == NULL)
 		ft_printf("Error\nMissing texture\n");
+
+	printf("texture nort: %s\n", game->path_no);
 }
