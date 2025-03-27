@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 15:11:51 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/26 17:06:49 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,8 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		int texture_x;
 		int texture_y;
 		int teste = 0;
+
+		(void)teste;
 
 		t_img wall;
 		if (side == 1) // Parede Norte ou Sul
