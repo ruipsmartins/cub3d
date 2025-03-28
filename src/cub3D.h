@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/28 11:57:59 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/28 14:38:08 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,32 @@ typedef struct s_textures
 	t_img		floor;
 	t_img		ceiling;
 }				t_textures;
+
+typedef struct s_ray
+{
+	float	cos_angle;
+	float	sin_angle;
+	float	ray_x;
+	float	ray_y;
+	float	dist;
+	float	height;
+	int		start_y;
+	int		end;
+	float	delta_dist_x;
+	float	delta_dist_y;
+	float	side_dist_x;
+	float	side_dist_y;
+	int		step_x;
+	int		step_y;
+	int		hit;
+	int		side;
+	int		color;
+	int		texture_x;
+	int		texture_y;
+	t_img	wall;
+	float	texture_step;
+	float	texture_pos;
+}				t_ray;
 
 typedef struct s_game
 {
