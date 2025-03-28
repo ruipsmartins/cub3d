@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 16:03:06 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/28 09:46:29 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void	find_player_pos(t_game *game)
 	game->player.x = 0;
 	game->player.y = 0;
 	
+	map_height(game);
+	map_len(game);
 	while(y <= game->map_height)
 	{
 		x = 0;
