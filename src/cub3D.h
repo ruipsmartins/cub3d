@@ -6,12 +6,12 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/28 14:38:08 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/28 15:48:01 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -53,7 +53,7 @@ typedef struct s_player
 typedef struct s_img
 {
 	void		*img;
-	char *pixel_buffer; // Buffer de píxeis da imagem
+	char		*pixel_buffer;
 	int			width;
 	int			height;
 	int			bpp;
@@ -73,28 +73,28 @@ typedef struct s_textures
 
 typedef struct s_ray
 {
-	float	cos_angle;
-	float	sin_angle;
-	float	ray_x;
-	float	ray_y;
-	float	dist;
-	float	height;
-	int		start_y;
-	int		end;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	float	side_dist_x;
-	float	side_dist_y;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-	int		color;
-	int		texture_x;
-	int		texture_y;
-	t_img	wall;
-	float	texture_step;
-	float	texture_pos;
+	float		cos_angle;
+	float		sin_angle;
+	float		ray_x;
+	float		ray_y;
+	float		dist;
+	float		height;
+	int			start_y;
+	int			end;
+	float		delta_dist_x;
+	float		delta_dist_y;
+	float		side_dist_x;
+	float		side_dist_y;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			color;
+	int			texture_x;
+	int			texture_y;
+	t_img		wall;
+	float		texture_step;
+	float		texture_pos;
 }				t_ray;
 
 typedef struct s_game
@@ -107,12 +107,12 @@ typedef struct s_game
 
 	char		**map;
 	char		**map_copy;
-	
+
 	void		*img_background;
 	int			img_width;
 	int			img_height;
 	int			map_len;
-	int			map_height;	
+	int			map_height;
 	char		*path_no;
 	char		*path_so;
 	char		*path_we;
@@ -138,7 +138,8 @@ bool			touch(float px, float py, t_game *game);
 float			distance(float x, float y);
 float			fixed_dist(float x1, float y1, float x2, float y2,
 					t_game *game);
-void			draw_ray_cast(t_player *player, t_game *game, float start_x, int i);
+void			draw_ray_cast(t_player *player, t_game *game, float start_x,
+					int i);
 
 void			ft_put_img(t_game *game, void *image, int x, int y);
 
