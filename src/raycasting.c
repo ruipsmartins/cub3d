@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/26 17:06:49 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:57:59 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int get_texture_pixel(t_img *texture, int x, int y)
 }
 
 // raycasting functions with DDA algorithm
-void draw_line(t_player *player, t_game *game, float ray_angle, int i)
+void draw_ray_cast(t_player *player, t_game *game, float ray_angle, int i)
 {
 	float cos_angle;
 	float sin_angle;
@@ -138,21 +138,27 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		if (side == 1) // Parede Norte ou Sul
 		{
 			if (step_y == -1)
+			{
 				wall = game->textures.wall_N;
+				texture_x = (int)(ray_y) % wall.width;
+			}
 			else
 			{
 				wall = game->textures.wall_S;
-				teste = 1;
+				texture_x = (int)(ray_y) % wall.width;
 			}
 		}
 		else // Parede Este ou Oeste
 		{
 			if (step_x == -1)
+			{
 				wall = game->textures.wall_W;
+				texture_x = (int)(ray_x) % wall.width;
+			}
 			else
 			{
 				wall = game->textures.wall_E;
-				teste = 1;
+				texture_x = (int)(ray_x) % wall.width;
 			}
 		}		
 
@@ -162,6 +168,12 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		else // Parede horizontal (Este ou Oeste)
     		texture_x = (int)(ray_x) % wall.width;
 
+		if(wall.img == game->textures.wall_S.img)
+			texture_x = wall.width - texture_x - 1;
+		if (wall.img == game->textures.wall_W.img)
+			texture_x = wall.width - texture_x - 1;
+		
+
 		// Calcular o "step" para percorrer a textura uniformemente
 		float texture_step = (float)wall.height / height;
 
@@ -169,7 +181,6 @@ void draw_line(t_player *player, t_game *game, float ray_angle, int i)
 		float texture_pos = (start_y - (WINDOW_HEIGHT - height) / 2) * texture_step;
 
 		// Percorrer os píxeis verticais e desenhá-los corretamente
-		
 		while (start_y < end)
 		{
 			texture_y = (int)texture_pos % wall.height;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 16:00:49 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:57:59 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ bool			touch(float px, float py, t_game *game);
 float			distance(float x, float y);
 float			fixed_dist(float x1, float y1, float x2, float y2,
 					t_game *game);
-void			draw_line(t_player *player, t_game *game, float start_x, int i);
+void			draw_ray_cast(t_player *player, t_game *game, float start_x, int i);
 
 void			ft_put_img(t_game *game, void *image, int x, int y);
 

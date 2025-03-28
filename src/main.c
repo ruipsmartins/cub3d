@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/25 11:23:20 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:57:59 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	draw_loop(t_game *game)
 	i = 0;
 	while (i < WINDOW_WIDTH)
 	{
-		draw_line(player, game, start_x, i);
+		draw_ray_cast(player, game, start_x, i);
 		start_x += fraction;
 		i++;
 	}
