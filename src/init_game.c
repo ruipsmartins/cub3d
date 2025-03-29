@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/28 09:46:29 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/03/29 12:48:35 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,29 @@ void load_texture(t_game *game, t_img *texture, char *path)
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
 }
 
+int flood_fill(t_game *game, int y, int x)
+{
+	if (y < 0 || y >= game->map_height || x < 0 || x >= game->map_len)
+		return (0);
+	if (game->map[y][x] == '1')
+		return (0);
+	if (game->map[y][x] == '2')
+	{
+		printf("Error\nMap not closed\n");
+		exit(1);
+	}
+	game->map[y][x] = '1';
+	flood_fill(game, y + 1, x);
+	flood_fill(game, y - 1, x);
+	flood_fill(game, y, x + 1);
+	flood_fill(game, y, x - 1);
+	return (1);
+}
 
 void	init_game(t_game *game)
 {
+	//map_height(game); // na funcao skip_def esta a dar a altura do mapa certa
+	map_len(game);
 	init_texture_and_rgb(game);
 	copy_map(game);
 	get_textures(game);
@@ -52,6 +72,12 @@ void	init_game(t_game *game)
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
 	init_player(game);
+
+	
+	// int x = (int)game->player.x / BLOCK;
+	// int y = (int)game->player.y / BLOCK;
+	// game->map = game->map + skip_def(game);
+	// flood_fill(game, y, x);
 
 	// textura da parede apenas para testar
 //	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
@@ -94,8 +120,6 @@ void	find_player_pos(t_game *game)
 	game->player.x = 0;
 	game->player.y = 0;
 	
-	map_height(game);
-	map_len(game);
 	while(y <= game->map_height)
 	{
 		x = 0;

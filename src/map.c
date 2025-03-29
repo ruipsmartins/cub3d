@@ -49,8 +49,7 @@ int        check_map(t_game *game)
 int	skip_def(t_game *game)
 {
 	int i = 0;
-	int	k = 0;
-
+	int height = 0;
 
 	while(game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
 		i++;
@@ -59,9 +58,14 @@ int	skip_def(t_game *game)
 		printf("Error\nNo map found\n");
 		exit(1);
 	}
-	while(game->map[k])
-		k++;
-	game->map_copy = malloc(sizeof(char **) * (k - i + 1));
+	while(game->map[height])
+		height++;
+	height = height - i;
+	game->map_copy = malloc(sizeof(char **) * (height + 1));
+	
+	
+	game->map_height = height; // Store the height of the map
+
 	if (!game->map_copy)
 	{
 		printf("Error\nMemory allocation failed\n");
@@ -84,14 +88,61 @@ void print_map(char **map)
 
 void	copy_map(t_game *game)
 {
+	int skip = skip_def(game);
+	char **map = game->map + skip;
+	int k = 0;
+	int i = 0;
+	while(map[i])
+	{
+		if (map[i][0] == '1' || map[i][0] == ' ')
+		{
+			game->map_copy[i] = malloc (sizeof(char) * game->map_len + 1);
+			if (!game->map_copy[i])
+			{
+				printf("Error\nMemory allocation failed\n");
+				exit(1);
+			}
+			k = 0;
+			while(map[i][k] && map[i][k] != '\n')
+			{
+				if (map[i][k] == '1' || map[i][k] == ' ')
+				game->map_copy[i][k] = '1';
+				else
+				game->map_copy[i][k] = map[i][k];
+				k++;
+			}
+			while(k < game->map_len)
+			{
+				game->map_copy[i][k] = '2';
+				k++;
+			}
+			game->map_copy[i][k] = '\0';
+		}
+		else if(map[i][0] != ' ' && map[i][0] != '1')
+		{
+			printf("Error\nInvalid map\n");
+			exit(1);
+		}
+		i++;
+	}
+	// Null-terminate the map_copy array
+	game->map_copy[i] = NULL;
+
+	print_map(game->map_copy);
+}
+
+
+/*
+void copy_map(t_game *game)
+{
 	int i = skip_def(game);
 	int j = 0;
 	int len = i;
-	while(game->map[len])
-		len++;
+	while (game->map[len])
+	len++;
 	
-	//malloc(sizeof(char *) * (len + 1));
-	while(game->map[i] && (game->map[i][0] == '1' || game->map[i][0] == ' '))
+	game->map_copy = malloc(sizeof(char *) * (len + 1));
+	while (game->map[i] && (game->map[i][0] == '1' || game->map[i][0] == ' '))
 	{
 		game->map_copy[j] = ft_strdup(game->map[i]);
 		if (!game->map_copy[j])
@@ -102,7 +153,7 @@ void	copy_map(t_game *game)
 		i++;
 		j++;
 	}
-	if(game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
+	if (game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
 	{
 		printf("Error\nInvalid map\n");
 		exit(1);
@@ -116,3 +167,5 @@ void	copy_map(t_game *game)
 	printf("\n");
 	print_map(game->map_copy);
 }
+
+*/
