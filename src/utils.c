@@ -59,3 +59,21 @@ void	clear_image(t_game *game)
 		y++;
 	}
 }
+
+int	should_update_frame(void)
+{
+	static struct timeval	last_time = {0, 0};
+	struct timeval			current_time;
+	long					elapsed_time;
+	int						frame_time;
+
+	frame_time = 16667; // 16.667ms para ~60 FPS
+	gettimeofday(&current_time, NULL);
+	elapsed_time = (current_time.tv_sec - last_time.tv_sec) * 1000000
+		+ (current_time.tv_usec - last_time.tv_usec);
+	if (elapsed_time < frame_time)
+		return (0); // Ainda não passou o tempo necessário
+	last_time = current_time; // Atualiza o tempo do último frame
+	return (1);               // Indica que é hora de atualizar o frame
+}
+
