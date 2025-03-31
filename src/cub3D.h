@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/29 12:39:32 by addicted         ###   ########.fr       */
+/*   Updated: 2025/03/31 11:17:48 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,21 +140,26 @@ float			fixed_dist(float x1, float y1, float x2, float y2,
 					t_game *game);
 void			draw_ray_cast(t_player *player, t_game *game, float start_x,
 					int i);
-
 void			ft_put_img(t_game *game, void *image, int x, int y);
 
-void			draw_map(t_game *game);
-
+// player movement
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
 void			move_player(t_player *player, t_game *game);
+int	is_colliding(t_game *game, float x, float y);
+void			rotate_player(t_player *player);
+void			move_in_direction(t_player *player, t_game *game, float dx,
+					float dy);
+void			move_player(t_player *player, t_game *game);
 
+// map
 char			**open_map(char *path);
 void			free_map(t_game *game);
 void			map_len(t_game *game);
-int				 skip_def(t_game *game);
+int				skip_def(t_game *game);
+void			draw_map(t_game *game);
 
-void			 get_textures(t_game *game);
+void			get_textures(t_game *game);
 void			get_rgb(t_game *game);
 void			copy_map(t_game *game);
 
