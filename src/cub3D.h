@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/31 11:42:27 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:03:35 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,7 @@ void			get_floor_color(t_game *game, char *line);
 // raycasting
 bool			touch(float px, float py, t_game *game);
 float			distance(float x, float y);
-float			fixed_dist(float x1, float y1, float x2, float y2,
-					t_game *game);
+float			fixed_dist(t_game *game, t_player *player, t_ray *ray);
 void			draw_ray_cast(t_player *player, t_game *game, float start_x,
 					int i);
 void			ft_put_img(t_game *game, void *image, int x, int y);

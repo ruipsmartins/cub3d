@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/31 11:47:02 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:12:25 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	perform_dda(t_ray *ray, t_game *game)
 // Calcula a projeção da parede com base na distância do raio
 void	calculate_wall_projection(t_ray *ray, t_player *player, t_game *game)
 {
-	// Calcula a distância perpendicular para evitar o efeito "fish-eye"
-	ray->dist = fixed_dist(player->x, player->y, ray->ray_x, ray->ray_y, game);
+	ray->dist = fixed_dist(game, player, ray);
 	// Calcula a altura da parede
 	ray->height = (BLOCK / ray->dist) * (WINDOW_WIDTH / 2);
 	ray->start_y = (WINDOW_HEIGHT - ray->height) / 2;
