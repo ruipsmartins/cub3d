@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/31 11:37:59 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:35:24 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
-	if (DEBUG)
+	if (1)
 	{
 		// meter aqui função para mostrar os raios e transformar em minimapa
 		draw_map(game);
-		draw_square(player->x, player->y, 10, 0x00FF00, game);
+		//draw_square(player->x, player->y, 10, 0x00FF00, game);
 	}
 	return (0);
 }

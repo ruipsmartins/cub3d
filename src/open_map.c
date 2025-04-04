@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/24 17:05:08 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/04 11:51:50 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,7 @@ void	free_map(t_game *game)
 // 	}
 //}
 
-void draw_map(t_game *game)
-{
-	char **map = game->map_copy; //tava map so
-	int color = 0x0000FF;
-	(void)color;
-	int y = 0;
 
-	while (map[y])
-	{
-		int x = 0;
-		while (map[y][x])
-		{
-			if (map[y][x] == '1')
-			{
-				//draw_square(x * BLOCK, y * BLOCK, BLOCK, color, game);
-				ft_put_img(game, game->textures.wall_N.img, x, y);
-			}
-			x++;
-		}
-		y++;
-	}
-}
 
 char	**open_map(char *path)
 {
@@ -74,7 +53,7 @@ char	**open_map(char *path)
 		if (!line)
 			break ;
 		holder = map_data;
-		//check_newlines(line, holder);
+		// check_newlines(line, holder);
 		map_data = ft_strjoin(holder, line);
 		free(line);
 		free(holder);
