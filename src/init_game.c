@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/29 12:48:35 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:17:20 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	init_texture_and_rgb(t_game *game)
 	game->path_ea = NULL;
 	game->color_floor = -1;
 	game->color_ceiling = -1;
+	game->textures.wall_E.img = NULL;
+	game->textures.wall_W.img = NULL;
+	game->textures.wall_N.img = NULL;
+	game->textures.wall_S.img = NULL;
 }
 
 
@@ -29,8 +33,8 @@ void load_texture(t_game *game, t_img *texture, char *path)
 	if (!texture->img)
 	{
 		printf("Erro ao carregar a textura %s\n", path);
-		//clean_game(game); melhorar clean game para nao dar seg fault, apenas limpar o que j'a foi alucado
-		exit(1);
+		game->return_value = 1;
+		clean_game(game);
 	}
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
 }
@@ -54,23 +58,30 @@ int flood_fill(t_game *game, int y, int x)
 	return (1);
 }
 
+void load_textures(t_game *game)
+{
+	load_texture(game, &game->textures.wall_N, game->path_no);
+	load_texture(game, &game->textures.wall_S, game->path_so);
+	load_texture(game, &game->textures.wall_W, game->path_we);
+	load_texture(game, &game->textures.wall_E, game->path_ea);
+}
+
 void	init_game(t_game *game)
 {
-	//map_height(game); // na funcao skip_def esta a dar a altura do mapa certa
+	game->return_value = 0;
+
 	map_len(game);
 	init_texture_and_rgb(game);
 	copy_map(game);
 	get_textures(game);
 	get_rgb(game);
 	game->mlx = mlx_init();
+
 	// ver leaks quando o jogo sai depois de nao conseguir abrir as textures
-	load_texture(game, &game->textures.wall_N, game->path_no);
-	load_texture(game, &game->textures.wall_S, game->path_so);
-	load_texture(game, &game->textures.wall_W, game->path_we);
-	load_texture(game, &game->textures.wall_E, game->path_ea);
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
+	load_textures(game);
 	init_player(game);
 
 	
@@ -79,9 +90,6 @@ void	init_game(t_game *game)
 	// game->map = game->map + skip_def(game);
 	// flood_fill(game, y, x);
 
-	// textura da parede apenas para testar
-//	load_texture(game, &game->textures.wall_N, "./img/n_texture.xpm");
-	load_texture(game, &game->textures.wall_N, game->path_no);
 }
 
 void	map_len(t_game *game)

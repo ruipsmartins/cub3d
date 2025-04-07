@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/01 12:03:35 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:12:23 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_game
 	t_player	player;
 	t_img		screen_img;
 	t_textures	textures;
+	int			return_value;
 
 	char		**map;
 	char		**map_copy;
