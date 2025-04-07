@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 14:12:23 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:15:17 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
-# define DEBUG 0
+# define DEBUG 1
+# define PI 3.14159265359
 
 # define W 119
 # define A 97
@@ -26,7 +27,6 @@
 # define RIGHT 65363
 # define PLAYER_RADIUS 5 // Define um raio para o jogador
 
-# define PI 3.14159265359
 
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
@@ -109,9 +109,6 @@ typedef struct s_game
 	char		**map;
 	char		**map_copy;
 
-	void		*img_background;
-	int			img_width;
-	int			img_height;
 	int			map_len;
 	int			map_height;
 	char		*path_no;

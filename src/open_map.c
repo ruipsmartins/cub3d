@@ -6,21 +6,12 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/04 11:51:50 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/07 16:23:41 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	free_map(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-		free(game->map[i++]);
-	free(game->map);
-}
 
 // static void check_newlines (char *line, char *holder)
 // {
