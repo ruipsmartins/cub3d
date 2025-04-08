@@ -6,13 +6,13 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/01 12:12:25 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:59:51 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
 
-// Executa o algoritmo DDA para encontrar a colisão com a parede
+// Execute the DDA algorithm to find the wall hit
 void	perform_dda(t_ray *ray, t_game *game)
 {
 	while (!ray->hit)
@@ -34,30 +34,23 @@ void	perform_dda(t_ray *ray, t_game *game)
 	}
 }
 
-// Calcula a projeção da parede com base na distância do raio
+// Calculate the distance from the player to the wall
+// and the height of the wall to be drawn
 void	calculate_wall_projection(t_ray *ray, t_player *player, t_game *game)
 {
 	ray->dist = fixed_dist(game, player, ray);
-	// Calcula a altura da parede
 	ray->height = (BLOCK / ray->dist) * (WINDOW_WIDTH / 2);
 	ray->start_y = (WINDOW_HEIGHT - ray->height) / 2;
 	ray->end = ray->start_y + ray->height;
-	// Garante que os limites fiquem dentro da janela
 	if (ray->start_y < 0)
 		ray->start_y = 0;
 	if (ray->end >= WINDOW_HEIGHT)
 		ray->end = WINDOW_HEIGHT - 1;
 }
 
-// Mapeia a textura e desenha a coluna correspondente à parede
-void	render_wall_slice(t_ray *ray, int column, t_game *game)
+// Selects the appropriate wall texture and calculates texture coordinates
+void	select_wall_texture(t_ray *ray, t_game *game)
 {
-	float	texture_pos;
-	int		y;
-	int		texture_y;
-	int		color;
-
-	// Seleciona a textura consoante a orientação da parede
 	if (ray->side == 1)
 	{
 		if (ray->step_y == -1)
@@ -72,16 +65,25 @@ void	render_wall_slice(t_ray *ray, int column, t_game *game)
 		else
 			ray->wall = game->textures.wall_E;
 	}
-	// Ajuste no mapeamento horizontal
 	if (ray->side == 0)
 		ray->texture_x = (int)(ray->ray_y) % ray->wall.width;
 	else
 		ray->texture_x = (int)(ray->ray_x) % ray->wall.width;
 	if (ray->wall.img == game->textures.wall_S.img)
-		ray->texture_x = ray->wall.width - ray->texture_x - 1;// melhorar isto aqui
+		ray->texture_x = ray->wall.width - ray->texture_x - 1;
 	if (ray->wall.img == game->textures.wall_W.img)
 		ray->texture_x = ray->wall.width - ray->texture_x - 1;
-	// Calcula o "step" para percorrer a textura
+}
+
+// Draws a vertical slice of the wall on the screen
+void	render_wall_slice(t_ray *ray, int column, t_game *game)
+{
+	float	texture_pos;
+	int		y;
+	int		texture_y;
+	int		color;
+
+	select_wall_texture(ray, game);
 	ray->texture_step = (float)ray->wall.height / ray->height;
 	texture_pos = (ray->start_y - (WINDOW_HEIGHT - ray->height) / 2)
 		* ray->texture_step;
@@ -96,7 +98,7 @@ void	render_wall_slice(t_ray *ray, int column, t_game *game)
 	}
 }
 
-// Função principal que chama as subfunções para o raycasting
+// Main function to draw a ray cast
 void	draw_ray_cast(t_player *player, t_game *game, float ray_angle, int i)
 {
 	t_ray	ray;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 10:40:08 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:39:07 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,17 @@ void	init_game(t_game *game)
 	get_textures(game);
 	get_rgb(game);
 	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		printf("Error\nFailed to initialize mlx\n");
+		exit(1);
+	}
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
+	if (!game->win)
+	{
+		printf("Error\nFailed to create window\n");
+		exit(1);
+	}
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
 	load_textures(game);
@@ -188,6 +198,8 @@ void	find_player_angle(t_game *game)
 
 void	init_player(t_game *game)
 {
+	//ft_bzero(&game->player, sizeof(t_player));
+	printf("init_player\n");
 	find_player_pos(game);
 	find_player_angle(game);
 	game->player.key_up = false;
