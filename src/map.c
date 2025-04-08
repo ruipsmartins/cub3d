@@ -66,7 +66,7 @@ int	skip_def(t_game *game)
 	while (game->map[height])
 		height++;
 	height = height - i;
-	game->map_copy = malloc(sizeof(char *) * (height + 2));
+	game->map_copy = malloc(sizeof(char *) * (height + 1));
 	game->map_height = height; // Store the height of the map
 	if (!game->map_copy)
 	{
@@ -94,7 +94,6 @@ void	copy_map(t_game *game)
 	char	**map;
 	int		k;
 	int		i;
-	int		j;
 
 	skip = skip_def(game);
 	map = game->map + skip;
@@ -133,14 +132,6 @@ void	copy_map(t_game *game)
 		}
 		i++;
 	}
-	j = 0;
-	game->map_copy[i] = malloc(sizeof(char) * game->map_len + 1);
-	while (j < game->map_len)
-	{
-		game->map_copy[i][j] = '2';
-		j++;
-	}
-	i++;
 	game->map_copy[i] = NULL;
 	print_map(game->map_copy);
 }
