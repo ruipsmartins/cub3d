@@ -51,7 +51,7 @@ int	skip_def(t_game *game)
 	int i = 0;
 	int height = 0;
 
-	while(game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
+	while (game->map[i] && game->map[i][0] != '1' && !ft_isspace(game->map[i][0]))
 		i++;
 	if (!game->map[i])
 	{
@@ -94,7 +94,7 @@ void	copy_map(t_game *game)
 	int i = 0;
 	while(map[i])
 	{
-		if (map[i][0] == '1' || map[i][0] == ' ')
+		if (map[i][0] == '1' || ft_isspace(map[i][0]))
 		{
 			game->map_copy[i] = malloc (sizeof(char) * game->map_len + 1);
 			if (!game->map_copy[i])
@@ -105,8 +105,8 @@ void	copy_map(t_game *game)
 			k = 0;
 			while(map[i][k] && map[i][k] != '\n')
 			{
-				if (map[i][k] == '1' || map[i][k] == ' ')
-				game->map_copy[i][k] = '1';
+				if (map[i][k] == '1' || ft_isspace(map[i][0]))
+					game->map_copy[i][k] = '1';
 				else
 				game->map_copy[i][k] = map[i][k];
 				k++;
@@ -118,7 +118,7 @@ void	copy_map(t_game *game)
 			}
 			game->map_copy[i][k] = '\0';
 		}
-		else if(map[i][0] != ' ' && map[i][0] != '1')
+		else if (!ft_isspace(map[i][0]) && map[i][0] != '1')
 		{
 			printf("Error\nInvalid map\n");
 			exit(1);
