@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/cub3D",  // O caminho para o executável
-            "args": ["maps/map.ber"],  // Aqui podes passar argumentos de linha de comandos
+            "args": ["maps/map2.ber"],  // Aqui podes passar argumentos de linha de comandos
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 11:39:07 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:20:19 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void load_texture(t_game *game, t_img *texture, char *path)
 int flood_fill(t_game *game, int y, int x, char **map)
 {
 	if (y < 0 || y >= game->map_height || x < 0 || x >= game->map_len)
+	{
+		printf("Error\nFlood fill out of bounds\n");
+		exit(1);
+		
 		return (0);
+	}
 	if (map[y][x] == '1')
 		return (0);
 	if (map[y][x] == '2')
