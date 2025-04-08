@@ -125,7 +125,14 @@ void	copy_map(t_game *game)
 		}
 		i++;
 	}
-	// Null-terminate the map_copy array
+	int j = 0;
+	game->map_copy[i] = malloc(sizeof(char) * game->map_len + 1);
+	while(j < game->map_len)
+	{
+		game->map_copy[i][j] = '2';
+		j++;
+	}
+	i++;
 	game->map_copy[i] = NULL;
 
 	print_map(game->map_copy);
