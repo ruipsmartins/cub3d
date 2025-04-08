@@ -169,3 +169,25 @@ void copy_map(t_game *game)
 }
 
 */
+
+void ff_map(t_game *game)
+{
+	int i = 0;
+
+	char **map;
+	map = malloc(sizeof(char **) * game->map_height + 1);
+	if (!map)
+	{
+		printf("ERROR\n Failed malloc on ff_map\n");
+		exit(1);
+	}
+	while(game->map_copy[i])
+	{
+		map[i] = ft_strdup(game->map_copy[i]);
+		i++;
+	}
+	map[i] = NULL;
+	flood_fill(game, (int)game->player.y / BLOCK, (int)game->player.x / BLOCK, map);
+	printf("\n\n AFTER FLOOD FILL \n\n");
+	print_map(map);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 14:12:23 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:39:50 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,9 @@ char			**open_map(char *path);
 void			free_map(t_game *game);
 void			map_len(t_game *game);
 int				skip_def(t_game *game);
+int 			flood_fill(t_game *game, int y, int x, char **map);
+void			ff_map(t_game *game);
+void			print_map(char **map);
 void			draw_map(t_game *game);
 
 void			get_textures(t_game *game);

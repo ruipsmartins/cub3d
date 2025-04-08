@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 14:21:23 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/08 10:40:08 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,24 @@ void load_texture(t_game *game, t_img *texture, char *path)
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp, &texture->size_line, &texture->endian);
 }
 
-int flood_fill(t_game *game, int y, int x)
+int flood_fill(t_game *game, int y, int x, char **map)
 {
 	if (y < 0 || y >= game->map_height || x < 0 || x >= game->map_len)
 		return (0);
-	if (game->map[y][x] == '1')
+	if (map[y][x] == '1')
 		return (0);
-	if (game->map[y][x] == '2')
+	if (map[y][x] == '2')
 	{
+		printf("\n\n AFTER FLOOD FILL \n\n");
+		print_map(map);
 		printf("Error\nMap not closed\n");
 		exit(1);
 	}
-	game->map[y][x] = '1';
-	flood_fill(game, y + 1, x);
-	flood_fill(game, y - 1, x);
-	flood_fill(game, y, x + 1);
-	flood_fill(game, y, x - 1);
+	map[y][x] = '1';
+	flood_fill(game, y + 1, x, map);
+	flood_fill(game, y - 1, x, map);
+	flood_fill(game, y, x + 1, map);
+	flood_fill(game, y, x - 1, map);
 	return (1);
 }
 
@@ -73,6 +75,8 @@ void	init_game(t_game *game)
 	map_len(game);
 	init_texture_and_rgb(game);
 	copy_map(game);
+	init_player(game);
+	ff_map(game);
 	get_textures(game);
 	get_rgb(game);
 	game->mlx = mlx_init();
