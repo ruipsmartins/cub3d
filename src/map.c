@@ -89,7 +89,6 @@ void print_map(char **map)
 void	copy_map(t_game *game)
 {
 	int skip = skip_def(game);
-	char **map = game->map + skip;
 	int k = 0;
 	int i = 0;
 	while(map[i])
@@ -105,7 +104,7 @@ void	copy_map(t_game *game)
 			k = 0;
 			while(map[i][k] && map[i][k] != '\n')
 			{
-				if (map[i][k] == '1' || ft_isspace(map[i][0]))
+				if (map[i][k] == '1' || ft_isspace(map[i][k]))
 					game->map_copy[i][k] = '1';
 				else
 				game->map_copy[i][k] = map[i][k];
