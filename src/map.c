@@ -89,6 +89,7 @@ void print_map(char **map)
 void	copy_map(t_game *game)
 {
 	int skip = skip_def(game);
+	char **map = game->map + skip;
 	int k = 0;
 	int i = 0;
 	while(map[i])
