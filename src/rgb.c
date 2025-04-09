@@ -23,20 +23,17 @@ int ft_atoi_for_rgb(const char *str)
 int rgb_str_to_hex(char *rgb_str)
 {
 	int rgb[3];  // Stores R, G, B values
-	char *token;;
+	char *token;
 	int i = 0;
-	int new_color; 
+	int new_color;
 
-	token = malloc(sizeof(char) * ft_strlen(rgb_str) + 1);
-	if (token == NULL)
-		return (printf("Error\nMemory allocation failed\n") * 0 -1); // Error handling
 	// Split the string by commas
 	token = strtok(rgb_str, ",");
 	while (token != NULL && i < 3)
 	{
 		rgb[i++] = ft_atoi_for_rgb(token); // Convert token to integer
-		if(rgb[i-1] <  0)
-			return(printf("LOOP\nInvalid RGB format\n") * 0 -1);// Error handling
+		if (rgb[i - 1] < 0)
+			return (printf("Error\nInvalid RGB format\n") * 0 - 1); // Error handling
 		token = strtok(NULL, ",");
 	}
 	if (i != 3)
@@ -97,6 +94,10 @@ void	get_rgb(t_game *game)
 	if (game->color_floor < 0 || game->color_ceiling < 0)
 	{
 		printf("Error\nMissing floor or ceiling color\n");
+		free_all_maps(game);
+		free_path(game);
+		
+		exit(1);
 	}
 }
 

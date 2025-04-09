@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/08 15:28:11 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/09 16:24:49 by ruidos-s         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/04/09 16:29:41 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "./cub3D.h"
 
@@ -32,6 +33,7 @@ void	find_player_pos(t_game *game)
 			{
 				if (game->player.x)
 				{
+					free_all_maps(game);
 					printf("Error\nPlayer positions\n");
 					exit(1);
 				}
@@ -50,6 +52,7 @@ void	find_player_angle(t_game *game)
 	if (game->player.x == 0 || game->player.y == 0)
 	{
 		printf("Error\nNo player position found\n");
+		free_all_maps(game);
 		exit(1);
 	}
 	printf("x: %f y: %f\n", game->player.x, game->player.y);

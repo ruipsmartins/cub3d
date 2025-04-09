@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 14:03:56 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:29:14 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void			move_player(t_player *player, t_game *game);
 
 // map
 char			**open_map(char *path);
-void			free_map(t_game *game);
+void			free_all_maps(t_game *game);
 void			map_len(t_game *game);
 int				skip_def(t_game *game);
 int 			flood_fill(t_game *game, int y, int x, char **map);
@@ -196,5 +196,8 @@ void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
 
 // utils
 int				should_update_frame(void);
+void free_images(t_game *game);
+void free_path(t_game *game);
+void	free_map(t_game *game);
 
 #endif
