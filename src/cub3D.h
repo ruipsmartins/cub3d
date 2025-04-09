@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 12:39:57 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 13:03:18 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,19 @@ void			draw_minimap(t_game *game);
 void			get_textures(t_game *game);
 void			get_rgb(t_game *game);
 void			copy_map(t_game *game);
+
+// minimap
+void			draw_minimap(t_game *game);
+void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
+void			draw_minimap_background(t_game *game, int center_x, int center_y,
+					int minimap_radius);
+void			init_minimap(t_minimap *minimap);
+void 			draw_player(t_game *game, int center_x, int center_y);
+void			draw_direction_line(t_player *player, t_game *game);
+void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
+
+
+
 
 // utils
 int				should_update_frame(void);
