@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 11:38:13 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:50:54 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_game
 	t_player	player;
 	t_img		screen_img;
 	t_textures	textures;
+	t_ray		ray;
 	int			return_value;
 
 	char		**map;
@@ -163,7 +164,7 @@ int				skip_def(t_game *game);
 int 			flood_fill(t_game *game, int y, int x, char **map);
 void			ff_map(t_game *game);
 void			print_map(char **map);
-void			draw_map(t_game *game);
+void			draw_minimap(t_game *game);
 
 void			get_textures(t_game *game);
 void			get_rgb(t_game *game);
