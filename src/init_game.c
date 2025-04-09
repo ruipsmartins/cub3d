@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/09 16:28:56 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:50:33 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_texture_and_rgb(t_game *game)
 	game->textures.wall_W.img = NULL;
 	game->textures.wall_N.img = NULL;
 	game->textures.wall_S.img = NULL;
+	game->textures.minimap_frame.img = NULL;
 }
 
 
