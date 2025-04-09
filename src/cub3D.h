@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 11:50:54 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:39:57 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,16 @@ typedef struct s_player
 	bool		left_rotate;
 	bool		right_rotate;
 }				t_player;
+
+typedef struct s_minimap
+{
+	int	tile_size;
+	int	center_x;
+	int	center_y;
+	int	minimap_radius;
+	int	draw_x;
+	int	draw_y;
+}				t_minimap;
 
 typedef struct s_img
 {

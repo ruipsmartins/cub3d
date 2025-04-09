@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:51:58 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 12:18:43 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 12:48:35 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,45 +66,64 @@ void	draw_minimap_background(t_game *game, int center_x, int center_y,
 	}
 }
 
-
-void	draw_minimap(t_game *game)
+static void	init_minimap(t_minimap *minimap)
 {
-	int tile_size = 16;
-	int center_x = 150;
-	int center_y = 150;
-	int minimap_radius = 95; // metade do lado do minimapa (200x200)
-	int y, x;
-	char **map = game->map_copy;
+	minimap->tile_size = 16;
+	minimap->center_x = 150;
+	minimap->center_y = 150;
+	minimap->minimap_radius = 95;
+}
 
-	// Calcula a posição do jogador no sistema de coordenadas do minimapa
+/* Função para desenhar os tiles do minimapa */
+static void	draw_minimap_tiles(t_game *game, t_minimap *minimap)
+{
+	int	y;
+	int	x;
 
 	y = 0;
-	draw_minimap_background(game, center_x, center_y, minimap_radius);
-	while (map[y])
+	while (game->map_copy[y])
 	{
 		x = 0;
-		while (map[y][x])
+		while (game->map_copy[y][x])
 		{
-				//deslocando para manter o jogador centrado
-			int draw_x = center_x + (x * tile_size) - ((int)(game->player.x / 4));
-			int draw_y = center_y + (y * tile_size) - ((int)(game->player.y / 4));
-
-			// Verifica se o tile está dentro da área de visualização do minimapa
-			if (draw_x + tile_size < center_x - minimap_radius
-				|| draw_x > center_x + minimap_radius || draw_y
-				+ tile_size < center_y - minimap_radius || draw_y > center_y
-				+ minimap_radius)
+			/* Calcula as coordenadas de desenho do tile */
+			minimap->draw_x = minimap->center_x + (x * minimap->tile_size)
+				- ((int)(game->player.x / 4));
+			minimap->draw_y = minimap->center_y + (y * minimap->tile_size)
+				- ((int)(game->player.y / 4));
+			/* Verifica se o tile está dentro da área do minimapa */
+			if (minimap->draw_x + minimap->tile_size < minimap->center_x
+				- minimap->minimap_radius
+				|| minimap->draw_x > minimap->center_x
+				+ minimap->minimap_radius
+				|| minimap->draw_y + minimap->tile_size < minimap->center_y
+				- minimap->minimap_radius
+				|| minimap->draw_y > minimap->center_y
+				+ minimap->minimap_radius)
 			{
 				x++;
-				continue ; // ignora tiles fora da área
+				continue ;
 			}
-
-			if (map[y][x] == '1')
-				draw_square(draw_x, draw_y, tile_size, 0x0000FF, game);
+			if (game->map_copy[y][x] == '1')
+				draw_square(minimap->draw_x, minimap->draw_y,
+					minimap->tile_size, 0x0000FF, game);
 			x++;
 		}
 		y++;
 	}
-	draw_player(game, center_x, center_y);
 }
 
+/* Função principal do minimapa */
+void	draw_minimap(t_game *game)
+{
+	t_minimap	minimap;
+
+	init_minimap(&minimap);
+	/* Desenha o fundo do minimapa */
+	draw_minimap_background(game, minimap.center_x, minimap.center_y,
+		minimap.minimap_radius);
+	/* Desenha os tiles do minimapa */
+	draw_minimap_tiles(game, &minimap);
+	/* Desenha o jogador no minimapa */
+	draw_player(game, minimap.center_x, minimap.center_y);
+}
