@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 17:28:03 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:07:54 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int flood_fill(t_game *game, int y, int x, char **map)
 	if (map[y][x] == '2')
 	{
 		printf("\n\n AFTER FLOOD FILL \n\n");
-		print_map(map);
+		//print_map(map);
 		printf("Error\nMap not closed\n");
 		exit(1);
 	}
@@ -77,6 +77,11 @@ void	init_game(t_game *game)
 {
 	game->return_value = 0;
 
+	if (!game->map)
+	{
+		printf("Error\nDidnt find the map!\n");
+		exit(1);
+	}
 	map_len(game);
 	init_texture_and_rgb(game);
 	copy_map(game);
@@ -100,13 +105,6 @@ void	init_game(t_game *game)
 	game->screen_img.pixel_buffer = mlx_get_data_addr(game->screen_img.img, &game->screen_img.bpp, &game->screen_img.size_line, &game->screen_img.endian);
 	load_textures(game);
 	init_player(game);
-
-	
-	// int x = (int)game->player.x / BLOCK;
-	// int y = (int)game->player.y / BLOCK;
-	// game->map = game->map + skip_def(game);
-	// flood_fill(game, y, x);
-
 }
 
 void	map_len(t_game *game)

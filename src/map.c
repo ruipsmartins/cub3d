@@ -133,7 +133,7 @@ void	copy_map(t_game *game)
 		i++;
 	}
 	game->map_copy[i] = NULL;
-	print_map(game->map_copy);
+//	print_map(game->map_copy);
 }
 
 /*
@@ -198,5 +198,9 @@ void	ff_map(t_game *game)
 	flood_fill(game, (int)game->player.y / BLOCK, (int)game->player.x / BLOCK,
 		map);
 	printf("\n\n AFTER FLOOD FILL \n\n");
-	print_map(map);
+	i = 0;
+	while(map[i])
+		free(map[i++]);
+	free(map);
+	//print_map(map);
 }
