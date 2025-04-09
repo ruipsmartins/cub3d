@@ -94,6 +94,10 @@ void	get_rgb(t_game *game)
 	if (game->color_floor < 0 || game->color_ceiling < 0)
 	{
 		printf("Error\nMissing floor or ceiling color\n");
+		free_all_maps(game);
+		free_path(game);
+		
+		exit(1);
 	}
 }
 

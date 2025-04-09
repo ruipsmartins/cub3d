@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 11:38:13 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:02:41 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ void			move_player(t_player *player, t_game *game);
 
 // map
 char			**open_map(char *path);
-void			free_map(t_game *game);
+void			free_all_maps(t_game *game);
 void			map_len(t_game *game);
 int				skip_def(t_game *game);
 int 			flood_fill(t_game *game, int y, int x, char **map);
@@ -171,5 +171,8 @@ void			copy_map(t_game *game);
 
 // utils
 int				should_update_frame(void);
+void free_images(t_game *game);
+void free_path(t_game *game);
+void	free_map(t_game *game);
 
 #endif

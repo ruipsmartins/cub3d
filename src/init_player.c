@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:28:11 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/08 15:28:38 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:02:01 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	find_player_pos(t_game *game)
 			{
 				if (game->player.x)
 				{
+					free_all_maps(game);
 					printf("Error\nPlayer positions\n");
 					exit(1);
 				}
@@ -50,6 +51,7 @@ void	find_player_angle(t_game *game)
 	if (game->player.x == 0 || game->player.y == 0)
 	{
 		printf("Error\nNo player position found\n");
+		free_all_maps(game);
 		exit(1);
 	}
 	printf("x: %f y: %f\n", game->player.x, game->player.y);

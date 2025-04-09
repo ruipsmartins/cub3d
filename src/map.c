@@ -7,7 +7,6 @@ int	check_map(t_game *game)
 
 	i = 0;
 	k = 0;
-	// char c = NULL;
 	while (game->map_copy[i])
 	{
 		k = 0;
@@ -31,22 +30,7 @@ int	check_map(t_game *game)
 	return (0);
 }
 
-// void	allocate_map(t_game *game)
-// {
-// 	int i = 0;
 
-// 	while(game->map_copy[i])
-// 	{
-// 		game->map_copy[i] = ft_strdup(game->map_copy[i]);
-// 		if (!game->map_copy[i])
-// 		{
-// 			printf("Error\nMemory allocation failed\n");
-// 			exit(1);
-// 		}
-
-// 		i++;
-// 	}
-// }
 
 int	skip_def(t_game *game)
 {
@@ -61,6 +45,7 @@ int	skip_def(t_game *game)
 	if (!game->map[i])
 	{
 		printf("Error\nNo map found\n");
+		free_map(game);
 		exit(1);
 	}
 	while (game->map[height])
@@ -136,46 +121,6 @@ void	copy_map(t_game *game)
 //	print_map(game->map_copy);
 }
 
-/*
-void	copy_map(t_game *game)
-{
-	int	i;
-	int	j;
-	int	len;
-
-	i = skip_def(game);
-	j = 0;
-	len = i;
-	while (game->map[len])
-	len++;
-	game->map_copy = malloc(sizeof(char *) * (len + 1));
-	while (game->map[i] && (game->map[i][0] == '1' || game->map[i][0] == ' '))
-	{
-		game->map_copy[j] = ft_strdup(game->map[i]);
-		if (!game->map_copy[j])
-		{
-			printf("Error\nMemory allocation failed\n");
-			exit(1);
-		}
-		i++;
-		j++;
-	}
-	if (game->map[i] && game->map[i][0] != '1' && game->map[i][0] != ' ')
-	{
-		printf("Error\nInvalid map\n");
-		exit(1);
-	}
-	game->map_copy[j] = NULL;
-	if (check_map(game))
-	{
-		printf("Error\nInvalid map\n");
-		exit(1);
-	}
-	printf("\n");
-	print_map(game->map_copy);
-}
-
-*/
 
 void	ff_map(t_game *game)
 {

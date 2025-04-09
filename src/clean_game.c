@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:59:24 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 16:24:25 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:02:22 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 } */
 
 
-void clean_images(t_game *game)
+void free_images(t_game *game)
 {
 	if (game->screen_img.img)
         mlx_destroy_image(game->mlx, game->screen_img.img);
@@ -60,27 +60,49 @@ void	free_map(t_game *game)
 	int	i;
 
 	i = 0;
-	while (game->map[i])
+	if(game->map)
 	{
-		free(game->map[i]);
-		i++;
+		while (game->map[i])
+		{
+			free(game->map[i]);
+			i++;
+		}
+		free(game->map);
 	}
-	free(game->map);
+}
+
+void	free_all_maps(t_game *game)
+{
+	int	i;
+
 	i = 0;
-	while (game->map_copy[i])
+	if(game->map)
 	{
-		free(game->map_copy[i]);
-		i++;
+		while (game->map[i])
+		{
+			free(game->map[i]);
+			i++;
+		}
+		free(game->map);
 	}
-	free(game->map_copy);
+	i = 0;
+	if(game->map_copy)
+	{
+		while (game->map_copy[i])
+		{
+			free(game->map_copy[i]);
+			i++;
+		}
+		free(game->map_copy);	
+	}
 }
 
 int	clean_game(t_game *game)
 {
     
-	clean_images(game);
+	free_images(game);
 	free_path(game);
-	free_map(game);
+	free_all_maps(game);
 
     if (game->win)
         mlx_destroy_window(game->mlx, game->win);
