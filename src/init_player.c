@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 15:28:11 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/08 15:28:38 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:24:49 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void	find_player_angle(t_game *game)
 		printf("Error\nInvalid player position\n");
 		exit(1);
 	}
-	game->player.x *= BLOCK;
-	game->player.y *= BLOCK;
+	game->player.x = game->player.x * BLOCK + 32;
+	game->player.y = game->player.y * BLOCK + 32;
 }
 
 void	init_player(t_game *game)
