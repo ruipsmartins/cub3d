@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 10:46:44 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:53:39 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	draw_loop(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	ft_memset(&game, '\0', sizeof(t_game)); // This initializes all members to 0/NULL 
+	//Ver se podemos fazer isto
 
 	if (argc != 2)
 	{

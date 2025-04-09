@@ -1,6 +1,13 @@
 #include "./cub3D.h"
 
-int	check_map(t_game *game)
+int is_valid_map_char(char c)
+{
+    return (c == '0' || c == '1' || c == 'N' || c == 'S' ||
+            c == 'E' || c == 'W' || c == '2' || ft_isspace(c));
+}
+
+
+void	check_map(t_game *game)
 {
 	int	i;
 	int	k;
@@ -10,16 +17,17 @@ int	check_map(t_game *game)
 	while (game->map_copy[i])
 	{
 		k = 0;
+		printf("i = %c\n", game->map_copy[i][k]);
 		while (game->map_copy[i][k])
 		{
-			if (game->map_copy[i][k] != '1' && game->map_copy[i][k] != ' '
-				&& game->map_copy[i][k] != '0' && game->map_copy[i][k] != 'N'
-				&& game->map_copy[i][k] != 'S' && game->map_copy[i][k] != 'W'
-				&& game->map_copy[i][k] != 'E')
+			if (!is_valid_map_char(game->map_copy[i][k]))
 			{
+				printf("char: %c\n", game->map_copy[i][k]);
 				printf("Error\nInvalid character in map\n");
-				return (1);
+				free_all_maps(game);
+				exit(1);
 			}
+
 			// Fix space in map
 			if (game->map_copy[i][k] == ' ')
 				game->map_copy[i][k] = '1';
@@ -27,7 +35,6 @@ int	check_map(t_game *game)
 		}
 		i++;
 	}
-	return (0);
 }
 
 
@@ -51,8 +58,11 @@ int	skip_def(t_game *game)
 	while (game->map[height])
 		height++;
 	height = height - i;
-	game->map_copy = malloc(sizeof(char *) * (height + 1));
+	game->map_copy = ft_calloc(height + 1, sizeof(char *)); /// melhor comecar tudo com ft_calloc para nao dar cond jump
 	game->map_height = height; // Store the height of the map
+	//
+	game->map_copy[height] = NULL;
+	//
 	if (!game->map_copy)
 	{
 		printf("Error\nMemory allocation failed\n");
@@ -86,8 +96,6 @@ void	copy_map(t_game *game)
 	i = 0;
 	while (map[i])
 	{
-		if (map[i][0] == '1' || ft_isspace(map[i][0]))
-		{
 			game->map_copy[i] = malloc(sizeof(char) * (game->map_len + 1));
 			if (!game->map_copy[i])
 			{
@@ -109,16 +117,12 @@ void	copy_map(t_game *game)
 				k++;
 			}
 			game->map_copy[i][k] = '\0';
-		}
-		else if (!ft_isspace(map[i][0]) && map[i][0] != '1')
-		{
-			printf("Error\nInvalid map\n");
-			exit(1);
-		}
 		i++;
 	}
 	game->map_copy[i] = NULL;
-//	print_map(game->map_copy);
+	print_map(game->map_copy);
+	check_map(game);
+//print_map(game->map_copy);
 }
 
 
