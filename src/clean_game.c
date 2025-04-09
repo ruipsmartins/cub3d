@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:59:24 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 16:24:25 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:16:51 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,17 @@
 void clean_images(t_game *game)
 {
 	if (game->screen_img.img)
-        mlx_destroy_image(game->mlx, game->screen_img.img);
-    if (game->textures.wall_N.img)
-        mlx_destroy_image(game->mlx, game->textures.wall_N.img);
-    if (game->textures.wall_S.img)
-        mlx_destroy_image(game->mlx, game->textures.wall_S.img);
-    if (game->textures.wall_E.img)
-        mlx_destroy_image(game->mlx, game->textures.wall_E.img);
-    if (game->textures.wall_W.img)
-        mlx_destroy_image(game->mlx, game->textures.wall_W.img);
+		mlx_destroy_image(game->mlx, game->screen_img.img);
+	if (game->textures.wall_N.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_N.img);
+	if (game->textures.wall_S.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_S.img);
+	if (game->textures.wall_E.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_E.img);
+	if (game->textures.wall_W.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_W.img);
+	if (game->textures.minimap_frame.img)
+		mlx_destroy_image(game->mlx, game->textures.minimap_frame.img);
 }
 
 void free_path(t_game *game)

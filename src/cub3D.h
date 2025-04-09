@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 13:03:18 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:03:56 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_textures
 	t_img		wall_S;
 	t_img		wall_E;
 	t_img		wall_W;
+	t_img		minimap_frame;
 	t_img		floor;
 	t_img		ceiling;
 }				t_textures;

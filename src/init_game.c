@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:34:37 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 17:28:03 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/09 14:36:58 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void load_textures(t_game *game)
 	load_texture(game, &game->textures.wall_S, game->path_so);
 	load_texture(game, &game->textures.wall_W, game->path_we);
 	load_texture(game, &game->textures.wall_E, game->path_ea);
+	load_texture(game, &game->textures.minimap_frame, "./img/minimap_frame.xpm");
 }
 
 void	init_game(t_game *game)
