@@ -32,7 +32,7 @@ int rgb_str_to_hex(char *rgb_str)
 	while (token != NULL && i < 3)
 	{
 		rgb[i++] = ft_atoi_for_rgb(token); // Convert token to integer
-		if (rgb[i - 1] < 0)
+		if (rgb[i - 1] < 0 || rgb[i - 1] > 255)
 			return (printf("Error\nInvalid RGB format\n") * 0 - 1); // Error handling
 		token = strtok(NULL, ",");
 	}
