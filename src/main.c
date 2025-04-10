@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/10 16:23:00 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:30:15 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,15 @@ int	draw_loop(t_game *game)
 		draw_minimap(game);
 	return (0);
 }
-
+void	check_cub(char *str)
+{
+	if(str[strlen(str) -1] != 'b' || str[strlen(str) -2] != 'u' ||
+	 str[strlen(str) -3] != 'c' || str[strlen(str) -4] != '.')
+		{
+			printf("ERROR\nMap file has to end with \".cub\"\n");
+			exit(1);
+		}
+}
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -48,6 +56,9 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 		return (1);
 	}
+	ft_memset(&game, '\0', sizeof(t_game)); // This initializes all members to 0/NULL 
+	//Ver se podemos fazer isto
+	check_cub(argv[1]);
 	game.map = open_map(argv[1]);
 	init_game(&game);
 	mlx_hook(game.win, DestroyNotify, NoEventMask, clean_game, &game);
