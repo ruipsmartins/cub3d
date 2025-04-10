@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 18:53:39 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:23:00 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	draw_loop(t_game *game)
 	int			i;
 
 	if (!should_update_frame())
-		return (0); // Se não passou tempo suficiente, sai
+		return (0);
 	player = &game->player;
 	move_player(player, game);
 	clear_image(game);
@@ -35,20 +35,13 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
-	if (1)
-	{
-		// meter aqui função para mostrar os raios e transformar em minimapa
 		draw_minimap(game);
-		//draw_square(player->x, player->y, 10, 0x00FF00, game);
-	}
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_game	game;
-	ft_memset(&game, '\0', sizeof(t_game)); // This initializes all members to 0/NULL 
-	//Ver se podemos fazer isto
 
 	if (argc != 2)
 	{
