@@ -17,7 +17,6 @@ void	check_map(t_game *game)
 	while (game->map_copy[i])
 	{
 		k = 0;
-		printf("i = %c\n", game->map_copy[i][k]);
 		while (game->map_copy[i][k])
 		{
 			if (!is_valid_map_char(game->map_copy[i][k]))
@@ -29,7 +28,7 @@ void	check_map(t_game *game)
 			}
 
 			// Fix space in map
-			if (game->map_copy[i][k] == ' ')
+			if (ft_isspace(game->map_copy[i][k]))
 				game->map_copy[i][k] = '1';
 			k++;
 		}
@@ -120,7 +119,7 @@ void	copy_map(t_game *game)
 		i++;
 	}
 	game->map_copy[i] = NULL;
-	print_map(game->map_copy);
+	//print_map(game->map_copy);
 	check_map(game);
 //print_map(game->map_copy);
 }
@@ -146,7 +145,6 @@ void	ff_map(t_game *game)
 	map[i] = NULL;
 	flood_fill(game, (int)game->player.y / BLOCK, (int)game->player.x / BLOCK,
 		map);
-	printf("\n\n AFTER FLOOD FILL \n\n");
 	i = 0;
 	while(map[i])
 		free(map[i++]);

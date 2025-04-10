@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/09 16:50:33 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:57:47 by duamarqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,29 @@ void load_textures(t_game *game)
 	load_texture(game, &game->textures.wall_E, game->path_ea);
 	load_texture(game, &game->textures.minimap_frame, "./img/minimap_frame.xpm");
 }
+void	check_wrong_options(t_game *game)
+{
+	int i;
+	int k;
+	char *str;
+
+	i = 0;
+	k = 0;
+	str = game->map[i];
+	while(str)
+	{
+	 if (str[0] != 'N' && str[0] != 'S' && str[0] != 'W' && 
+            str[0] != 'E' && str[0] != 'F' && str[0] != 'C' && 
+            str[0] != '1' && str[0] != '0' && !ft_isspace(str[0]))
+			{
+				printf("ERROR\nWrong options on map file\n");
+				exit(0);
+			}
+		i++;
+		str = game->map[i]; 
+	}
+}
+
 
 void	init_game(t_game *game)
 {
@@ -86,6 +109,7 @@ void	init_game(t_game *game)
 		exit(1);
 	}
 	map_len(game);
+	check_wrong_options(game);
 	init_texture_and_rgb(game);
 	copy_map(game);
 	init_player(game);
