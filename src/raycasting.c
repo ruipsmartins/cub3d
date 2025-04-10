@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 10:59:51 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:25:50 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void	perform_dda(t_ray *ray, t_game *game)
 void	calculate_wall_projection(t_ray *ray, t_player *player, t_game *game)
 {
 	ray->dist = fixed_dist(game, player, ray);
-	ray->height = (BLOCK / ray->dist) * (WINDOW_WIDTH / 2);
+	//proj_plane_dist = (WINDOW_WIDTH / 2) / tan(0.55);
+	ray->height = (BLOCK / ray->dist) * ray->proj_plane_dist;
 	ray->start_y = (WINDOW_HEIGHT - ray->height) / 2;
 	ray->end = ray->start_y + ray->height;
 	if (ray->start_y < 0)
@@ -84,7 +85,7 @@ void	render_wall_slice(t_ray *ray, int column, t_game *game)
 	int		color;
 
 	select_wall_texture(ray, game);
-	ray->texture_step = (float)ray->wall.height / ray->height;
+	ray->texture_step = (float)ray->wall.height / (ray->height);
 	texture_pos = (ray->start_y - (WINDOW_HEIGHT - ray->height) / 2)
 		* ray->texture_step;
 	y = ray->start_y;

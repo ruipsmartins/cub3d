@@ -67,7 +67,7 @@ int	should_update_frame(void)
 	long					elapsed_time;
 	int						frame_time;
 
-	frame_time = 16667; // 16.667ms para ~60 FPS
+	frame_time = 26667; // 16.667ms para ~60 FPS
 	gettimeofday(&current_time, NULL);
 	elapsed_time = (current_time.tv_sec - last_time.tv_sec) * 1000000
 		+ (current_time.tv_usec - last_time.tv_usec);

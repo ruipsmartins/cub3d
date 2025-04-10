@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 17:04:00 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/31 11:14:24 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:32:36 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	rotate_player(t_player *player)
 {
 	float	angle_speed;
 
-	angle_speed = 0.06;
+	angle_speed = 0.04;
 	if (player->left_rotate)
 		player->angle -= angle_speed;
 	if (player->right_rotate)

@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/08 11:36:05 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 14:30:29 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,5 @@ void	init_ray(t_ray *ray, t_player *player, float ray_angle)
 		ray->side_dist_y = ((int)ray->ray_y + 1 - ray->ray_y)
 			* ray->delta_dist_y;
 	ray->hit = 0;
+	ray->proj_plane_dist = (WINDOW_WIDTH / 2) / tan(0.55);
 }

@@ -6,13 +6,14 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/09 16:29:14 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/10 13:32:06 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
+//# define WINDOW_WIDTH 1080
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
@@ -84,6 +85,7 @@ typedef struct s_textures
 
 typedef struct s_ray
 {
+	float		proj_plane_dist;
 	float		cos_angle;
 	float		sin_angle;
 	float		ray_x;
