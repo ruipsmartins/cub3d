@@ -51,7 +51,7 @@ int	skip_def(t_game *game)
 	if (!game->map[i])
 	{
 		printf("Error\nNo map found\n");
-		free_map(game);
+		free_single_map(game->map);
 		exit(1);
 	}
 	while (game->map[height])
