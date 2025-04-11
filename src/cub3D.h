@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:01:13 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:19:32 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,11 +190,12 @@ void			init_minimap(t_minimap *minimap);
 void			draw_player(t_game *game, int center_x, int center_y);
 void			draw_direction_line(t_player *player, t_game *game);
 void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
+void			draw_frame(t_img *src, t_game *game);
 
 // utils
 int				should_update_frame(void);
 void			free_images(t_game *game);
 void			free_path(t_game *game);
-void			free_single_map(char **map);
+void			free_map(t_game *game);
 
 #endif

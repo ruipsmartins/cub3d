@@ -6,25 +6,11 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/07 16:23:41 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:14:07 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-
-// static void check_newlines (char *line, char *holder)
-// {
-// 	if (line[0] == '\n')
-// 	{
-// 		ft_printf("newline no mapa\n");
-// 		free(holder);
-// 		free(line);
-// 		exit(1);
-// 	}
-//}
-
-
 
 char	**open_map(char *path)
 {
@@ -44,7 +30,6 @@ char	**open_map(char *path)
 		if (!line)
 			break ;
 		holder = map_data;
-		// check_newlines(line, holder);
 		map_data = ft_strjoin(holder, line);
 		free(line);
 		free(holder);
