@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:16:50 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:20:25 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,6 @@ void	load_textures(t_game *game)
 		"./img/minimap_frame.xpm");
 }
 
-void	check_wrong_options(t_game *game)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = game->map[i];
-	while (str)
-	{
-		if (str[0] != 'N' && str[0] != 'S' && str[0] != 'W' && str[0] != 'E'
-			&& str[0] != 'F' && str[0] != 'C' && str[0] != '1' && str[0] != '0'
-			&& !ft_isspace(str[0]))
-		{
-			printf("ERROR\nWrong options on map file\n");
-			exit(0);
-		}
-		i++;
-		str = game->map[i];
-	}
-}
-
 static void	init_mlx_window(t_game *game)
 {
 	game->mlx = mlx_init();
@@ -112,30 +91,4 @@ void	init_game(t_game *game)
 	init_mlx_window(game);
 	load_textures(game);
 	init_player(game);
-}
-
-void	map_len(t_game *game)
-{
-	int	size;
-	int	i;
-
-	i = 0;
-	size = ft_strlen(game->map[i]);
-	while (game->map[i])
-	{
-		if ((int)ft_strlen(game->map[i]) > size)
-			size = ft_strlen(game->map[i]);
-		i++;
-	}
-	game->map_len = size;
-}
-
-void	map_height(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-		i++;
-	game->map_height = i;
 }

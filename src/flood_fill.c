@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:15:44 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:18:07 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,4 @@ void	map_height(t_game *game)
 	while (game->map[i])
 		i++;
 	game->map_height = i;
-} 
+}
