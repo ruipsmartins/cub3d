@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: duamarqu <duamarqu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/10 16:57:47 by duamarqu         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:52:56 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,9 @@ void load_textures(t_game *game)
 void	check_wrong_options(t_game *game)
 {
 	int i;
-	int k;
 	char *str;
 
 	i = 0;
-	k = 0;
 	str = game->map[i];
 	while(str)
 	{
