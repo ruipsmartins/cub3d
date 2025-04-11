@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:18:07 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:36:23 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,30 @@ void	map_height(t_game *game)
 	while (game->map[i])
 		i++;
 	game->map_height = i;
+}
+
+void	ff_map(t_game *game)
+{
+	int		i;
+	char	**map;
+
+	i = 0;
+	map = malloc(sizeof(char *) * (game->map_height + 1));
+	if (!map)
+	{
+		printf("ERROR\n Failed malloc on ff_map\n");
+		exit(1);
+	}
+	while (game->map_copy[i])
+	{
+		map[i] = ft_strdup(game->map_copy[i]);
+		i++;
+	}
+	map[i] = NULL;
+	flood_fill(game, (int)game->player.y / BLOCK, (int)game->player.x / BLOCK,
+		map);
+	i = 0;
+	while (map[i])
+		free(map[i++]);
+	free(map);
 }

@@ -6,7 +6,6 @@ int is_valid_map_char(char c)
             c == 'E' || c == 'W' || c == '2' || ft_isspace(c));
 }
 
-
 void	check_map(t_game *game)
 {
 	int	i;
@@ -35,8 +34,6 @@ void	check_map(t_game *game)
 		i++;
 	}
 }
-
-
 
 int	skip_def(t_game *game)
 {
@@ -122,32 +119,4 @@ void	copy_map(t_game *game)
 	//print_map(game->map_copy);
 	check_map(game);
 //print_map(game->map_copy);
-}
-
-
-void	ff_map(t_game *game)
-{
-	int		i;
-	char	**map;
-
-	i = 0;
-	map = malloc(sizeof(char *) * (game->map_height + 1));
-	if (!map)
-	{
-		printf("ERROR\n Failed malloc on ff_map\n");
-		exit(1);
-	}
-	while (game->map_copy[i])
-	{
-		map[i] = ft_strdup(game->map_copy[i]);
-		i++;
-	}
-	map[i] = NULL;
-	flood_fill(game, (int)game->player.y / BLOCK, (int)game->player.x / BLOCK,
-		map);
-	i = 0;
-	while(map[i])
-		free(map[i++]);
-	free(map);
-	//print_map(map);
 }

@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/11 16:21:28 by addicted         ###   ########.fr       */
+/*   Created: 2025/04/11 17:33:23 by addicted          #+#    #+#             */
+/*   Updated: 2025/04/11 17:33:59 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
-
 
 void	validate_textures(t_game *game)
 {
@@ -35,6 +34,7 @@ void	check_duplicate_textures(t_game *game, int index)
 			&& game->path_ea != NULL))
 		ft_printf("Error\nDuplicate texture\n");
 }
+
 void	process_texture_line(t_game *game, int index)
 {
 	if (game->map[index][0] == 'N' && game->map[index][1] == 'O'
