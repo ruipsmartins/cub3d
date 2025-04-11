@@ -1,63 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/04/11 16:21:28 by addicted         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./cub3D.h"
 
-static void	check_for_xpm(char *str, t_game *game);
-static void	get_north_texture(t_game *game, char *line);
-static void	get_south_texture(t_game *game, char *line);
-static void	get_west_texture(t_game *game, char *line);
-static void	get_east_texture(t_game *game, char *line);
-static void	check_duplicate_textures(t_game *game, int index);
-static void	process_texture_line(t_game *game, int index);
-static void	validate_textures(t_game *game);
 
-static void	check_for_xpm(char *str, t_game *game)
+void	validate_textures(t_game *game)
 {
-	int	len;
-
-	if (!str)
+	if (game->path_no == NULL || game->path_so == NULL
+		|| game->path_we == NULL || game->path_ea == NULL)
 	{
 		ft_printf("Error\nMissing texture\n");
 		clean_game(game);
 	}
-	len = ft_strlen(str);
-	if (str[len - 1] != 'm' || str[len - 2] != 'p'
-		|| str[len - 3] != 'x' || str[len - 4] != '.')
-	{
-		printf("string = %s \n", str);
-		printf("c = %c\n", str[len - 1]);
-		printf("Error\nTextures should end with \".xpm\" and have no spaces after\n");
-		clean_game(game);
-	}
 }
 
-static void	get_north_texture(t_game *game, char *line)
-{
-	check_for_xpm(line, game);
-	game->path_no = ft_strdup(line + 3);
-	printf("NO: %s\n", game->path_no);
-}
-
-static void	get_south_texture(t_game *game, char *line)
-{
-	check_for_xpm(line, game);
-	game->path_so = ft_strdup(line + 3);
-	printf("SO: %s\n", game->path_so);
-}
-
-static void	get_west_texture(t_game *game, char *line)
-{
-	check_for_xpm(line, game);
-	game->path_we = ft_strdup(line + 3);
-	printf("WE: %s\n", game->path_we);
-}
-
-static void	get_east_texture(t_game *game, char *line)
-{
-	check_for_xpm(line, game);
-	game->path_ea = ft_strdup(line + 3);
-	printf("EA: %s\n", game->path_ea);
-}
-
-static void	check_duplicate_textures(t_game *game, int index)
+void	check_duplicate_textures(t_game *game, int index)
 {
 	if ((game->map[index][0] == 'N' && game->map[index][1] == 'O'
 			&& game->path_no != NULL)
@@ -69,8 +35,7 @@ static void	check_duplicate_textures(t_game *game, int index)
 			&& game->path_ea != NULL))
 		ft_printf("Error\nDuplicate texture\n");
 }
-
-static void	process_texture_line(t_game *game, int index)
+void	process_texture_line(t_game *game, int index)
 {
 	if (game->map[index][0] == 'N' && game->map[index][1] == 'O'
 		&& game->path_no == NULL)
@@ -84,16 +49,6 @@ static void	process_texture_line(t_game *game, int index)
 	else if (game->map[index][0] == 'E' && game->map[index][1] == 'A'
 		&& game->path_ea == NULL)
 		get_east_texture(game, game->map[index]);
-}
-
-static void	validate_textures(t_game *game)
-{
-	if (game->path_no == NULL || game->path_so == NULL
-		|| game->path_we == NULL || game->path_ea == NULL)
-	{
-		ft_printf("Error\nMissing texture\n");
-		clean_game(game);
-	}
 }
 
 void	get_textures(t_game *game)
