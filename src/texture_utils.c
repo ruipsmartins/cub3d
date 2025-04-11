@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:35:00 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 16:21:01 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:44:17 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	check_for_xpm(char *str, t_game *game)
 	{
 		printf("string = %s \n", str);
 		printf("c = %c\n", str[len - 1]);
-		printf("Error\nTextures should end with \".xpm\" and have no spaces after\n");
+		printf("Error\nTextures should end with \".xpm\"");
+		printf(" and have no spaces after\n");
 		clean_game(game);
 	}
 }
