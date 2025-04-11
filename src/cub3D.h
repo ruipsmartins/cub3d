@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:40:53 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:46:44 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void			draw_frame(t_img *src, t_game *game);
 int				should_update_frame(void);
 void			free_images(t_game *game);
 void			free_path(t_game *game);
-void			free_map(t_game *game);
+void			free_all_maps(t_game *game);
+void			free_single_map(char **map);
 
 #endif
