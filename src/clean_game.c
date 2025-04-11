@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 16:59:24 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 15:26:58 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:01:32 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	free_images(t_game *game)
 {
 	if (game->screen_img.img)
 		mlx_destroy_image(game->mlx, game->screen_img.img);
-	if (game->textures.wall_N.img)
-		mlx_destroy_image(game->mlx, game->textures.wall_N.img);
-	if (game->textures.wall_S.img)
-		mlx_destroy_image(game->mlx, game->textures.wall_S.img);
-	if (game->textures.wall_E.img)
-		mlx_destroy_image(game->mlx, game->textures.wall_E.img);
-	if (game->textures.wall_W.img)
-		mlx_destroy_image(game->mlx, game->textures.wall_W.img);
+	if (game->textures.wall_n.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_n.img);
+	if (game->textures.wall_s.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_s.img);
+	if (game->textures.wall_e.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_e.img);
+	if (game->textures.wall_w.img)
+		mlx_destroy_image(game->mlx, game->textures.wall_w.img);
 	if (game->textures.minimap_frame.img)
 		mlx_destroy_image(game->mlx, game->textures.minimap_frame.img);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/10 14:25:50 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:04:19 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,24 +55,24 @@ void	select_wall_texture(t_ray *ray, t_game *game)
 	if (ray->side == 1)
 	{
 		if (ray->step_y == -1)
-			ray->wall = game->textures.wall_N;
+			ray->wall = game->textures.wall_n;
 		else
-			ray->wall = game->textures.wall_S;
+			ray->wall = game->textures.wall_s;
 	}
 	else
 	{
 		if (ray->step_x == -1)
-			ray->wall = game->textures.wall_W;
+			ray->wall = game->textures.wall_w;
 		else
-			ray->wall = game->textures.wall_E;
+			ray->wall = game->textures.wall_e;
 	}
 	if (ray->side == 0)
 		ray->texture_x = (int)(ray->ray_y) % ray->wall.width;
 	else
 		ray->texture_x = (int)(ray->ray_x) % ray->wall.width;
-	if (ray->wall.img == game->textures.wall_S.img)
+	if (ray->wall.img == game->textures.wall_s.img)
 		ray->texture_x = ray->wall.width - ray->texture_x - 1;
-	if (ray->wall.img == game->textures.wall_W.img)
+	if (ray->wall.img == game->textures.wall_w.img)
 		ray->texture_x = ray->wall.width - ray->texture_x - 1;
 }
 

@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/11 15:29:50 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:01:43 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	init_texture_and_rgb(t_game *game)
 	game->path_ea = NULL;
 	game->color_floor = -1;
 	game->color_ceiling = -1;
-	game->textures.wall_E.img = NULL;
-	game->textures.wall_W.img = NULL;
-	game->textures.wall_N.img = NULL;
-	game->textures.wall_S.img = NULL;
+	game->textures.wall_e.img = NULL;
+	game->textures.wall_w.img = NULL;
+	game->textures.wall_n.img = NULL;
+	game->textures.wall_s.img = NULL;
 	game->textures.minimap_frame.img = NULL;
 }
 
@@ -67,10 +67,10 @@ int	flood_fill(t_game *game, int y, int x, char **map)
 
 void	load_textures(t_game *game)
 {
-	load_texture(game, &game->textures.wall_N, game->path_no);
-	load_texture(game, &game->textures.wall_S, game->path_so);
-	load_texture(game, &game->textures.wall_W, game->path_we);
-	load_texture(game, &game->textures.wall_E, game->path_ea);
+	load_texture(game, &game->textures.wall_n, game->path_no);
+	load_texture(game, &game->textures.wall_s, game->path_so);
+	load_texture(game, &game->textures.wall_w, game->path_we);
+	load_texture(game, &game->textures.wall_e, game->path_ea);
 	load_texture(game, &game->textures.minimap_frame, "./img/minimap_frame.xpm");
 }
 

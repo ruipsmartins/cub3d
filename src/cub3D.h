@@ -6,7 +6,7 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 15:23:49 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:01:13 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ typedef struct s_img
 
 typedef struct s_textures
 {
-	t_img		wall_N;
-	t_img		wall_S;
-	t_img		wall_E;
-	t_img		wall_W;
+	t_img		wall_n;
+	t_img		wall_s;
+	t_img		wall_e;
+	t_img		wall_w;
 	t_img		minimap_frame;
 	t_img		floor;
 	t_img		ceiling;

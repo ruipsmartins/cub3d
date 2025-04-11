@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rgb.c                                             :+:      :+:    :+:   */
+/*   rgb_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/11 15:35:00 by addicted         ###   ########.fr       */
+/*   Created: 2025/04/11 15:35:00 by addicted          #+#    #+#             */
+/*   Updated: 2025/04/11 15:56:46 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ int	atoi_for_rgb(const char *str)
 	return (res * sign);
 }
 
-static int	validate_rgb_value(int value)
+int	validate_rgb_value(int value)
 {
 	if (value < 0 || value > 255)
 		return (0);
 	return (1);
 }
 
-static int	combine_rgb(int r, int g, int b)
+int	combine_rgb(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
 }
@@ -71,65 +71,3 @@ int	rgb_str_to_hex(char *rgb_str)
 	new_color = combine_rgb(rgb[0], rgb[1], rgb[2]);
 	return (new_color);
 }
-
-void	get_floor_color(t_game *game, char *line)
-{
-	char	*color_str;
-	int		number;
-
-	color_str = ft_strdup(line + 2);
-	number = rgb_str_to_hex(color_str);
-	game->color_floor = number;
-	free(color_str);
-	printf("Floor color: %d\n", number);
-}
-
-void	get_ceiling_color(t_game *game, char *line)
-{
-	char	*color_str;
-	int		number;
-
-	color_str = ft_strdup(line + 2);
-	number = rgb_str_to_hex(color_str);
-	game->color_ceiling = number;
-	free(color_str);
-	printf("Ceiling color: %d\n", game->color_ceiling);
-}
-
-static void	check_duplicate_colors(t_game *game, int i)
-{
-	if ((game->map[i][0] == 'F' && game->color_floor >= 0)
-		|| (game->map[i][0] == 'C' && game->color_ceiling >= 0))
-	{
-		printf("Error\nDuplicate floor or ceiling color\n");
-		free_all_maps(game);
-		free_path(game);
-		exit(1);
-	}
-}
-
-void	get_rgb(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	while (game->map[i])
-	{
-		if (game->map[i][0] == 'F' && game->color_floor < 0)
-			get_floor_color(game, game->map[i]);
-		else if (game->map[i][0] == 'C' && game->color_ceiling < 0)
-			get_ceiling_color(game, game->map[i]);
-		else
-			check_duplicate_colors(game, i);
-		i++;
-	}
-	if (game->color_floor < 0 || game->color_ceiling < 0)
-	{
-		printf("Error\nMissing floor or ceiling color\n");
-		free_all_maps(game);
-		free_path(game);
-		exit(1);
-	}
-}
-
-
