@@ -6,12 +6,11 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 15:36:11 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:59:31 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
-
 
 int	draw_loop(t_game *game)
 {
@@ -35,18 +34,20 @@ int	draw_loop(t_game *game)
 		start_x += fraction;
 		i++;
 	}
-		draw_minimap(game);
+	draw_minimap(game);
 	return (0);
 }
+
 void	check_cub(char *str)
 {
-	if(str[strlen(str) -1] != 'b' || str[strlen(str) -2] != 'u' ||
-	 str[strlen(str) -3] != 'c' || str[strlen(str) -4] != '.')
-		{
-			printf("ERROR\nMap file has to end with \".cub\"\n");
-			exit(1);
-		}
+	if (str[ft_strlen(str) - 1] != 'b' || str[ft_strlen(str) - 2] != 'u'
+		|| str[ft_strlen(str) - 3] != 'c' || str[ft_strlen(str) - 4] != '.')
+	{
+		printf("ERROR\nMap file has to end with \".cub\"\n");
+		exit(1);
+	}
 }
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -56,8 +57,7 @@ int	main(int argc, char **argv)
 		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
 		return (1);
 	}
-	ft_memset(&game, '\0', sizeof(t_game)); // This initializes all members to 0/NULL 
-	//Ver se podemos fazer isto
+	ft_memset(&game, '\0', sizeof(t_game));
 	check_cub(argv[1]);
 	game.map = open_map(argv[1]);
 	init_game(&game);

@@ -6,14 +6,13 @@
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:46:44 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:05:11 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-//# define WINDOW_WIDTH 1080
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define BLOCK 64
@@ -26,7 +25,7 @@
 # define D 100
 # define LEFT 65361
 # define RIGHT 65363
-# define PLAYER_RADIUS 5 // Define um raio para o jogador
+# define PLAYER_RADIUS 5
 
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
@@ -45,7 +44,6 @@ typedef struct s_player
 	bool		key_down;
 	bool		key_left;
 	bool		key_right;
-
 	bool		left_rotate;
 	bool		right_rotate;
 }				t_player;
@@ -118,10 +116,8 @@ typedef struct s_game
 	t_textures	textures;
 	t_ray		ray;
 	int			return_value;
-
 	char		**map;
 	char		**map_copy;
-
 	int			map_len;
 	int			map_height;
 	char		*path_no;
@@ -130,14 +126,13 @@ typedef struct s_game
 	char		*path_ea;
 	int			color_floor;
 	int			color_ceiling;
-
 }				t_game;
 
 void			init_game(t_game *game);
 void			init_player(t_game *game);
 int				clean_game(t_game *game);
 int				draw_loop(t_game *game);
-// utils
+
 void			draw_square(int x, int y, int size, int color, t_game *game);
 void			ft_put_img(t_game *game, void *image, int x, int y);
 void			ft_put_pixel(int x, int y, int color, t_game *game);
@@ -201,10 +196,9 @@ void			draw_minimap_background(t_game *game, int center_x,
 void			init_minimap(t_minimap *minimap);
 void			draw_player(t_game *game, int center_x, int center_y);
 void			draw_direction_line(t_player *player, t_game *game);
-void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
+
 void			draw_frame(t_img *src, t_game *game);
 
-// utils
 int				should_update_frame(void);
 void			free_images(t_game *game);
 void			free_path(t_game *game);
