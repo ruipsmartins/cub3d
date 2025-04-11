@@ -1,11 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/11 17:31:19 by ruidos-s          #+#    #+#             */
+/*   Updated: 2025/04/11 17:34:40 by ruidos-s         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "./cub3D.h"
 
-void	draw_square(int x, int y, int size, int color, t_game *game)
+void	draw_square(int x, int y, int size, t_game *game)
 {
 	int	i;
 	int	j;
+	int	color;
 
+	if (size == 4)
+		color = 0xFF0000;
+	else if (size == 16)
+		color = 0x0000FF;
 	i = 0;
 	while (i < size)
 	{
@@ -19,6 +35,7 @@ void	draw_square(int x, int y, int size, int color, t_game *game)
 	}
 }
 
+// our own put_img function
 void	ft_put_img(t_game *game, void *image, int x, int y)
 {
 	mlx_put_image_to_window(game->mlx, game->win, image, x * 64, y * 64);
@@ -40,17 +57,18 @@ void	ft_put_pixel(int x, int y, int color, t_game *game)
 // our own clear_image function
 void	clear_image(t_game *game)
 {
-	int y = 0;
+	int	y;
+	int	x;
+	int	color;
+
+	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{
-		int x = 0;
-		int color;
-
+		x = 0;
 		if (y < WINDOW_HEIGHT / 2)
-			color = game->color_ceiling; // Azul claro para o teto
+			color = game->color_ceiling;
 		else
-			color = game->color_floor; // Castanho para o chão
-
+			color = game->color_floor;
 		while (x < WINDOW_WIDTH)
 		{
 			ft_put_pixel(x, y, color, game);
@@ -60,6 +78,7 @@ void	clear_image(t_game *game)
 	}
 }
 
+// function to check if the frame should be updated
 int	should_update_frame(void)
 {
 	static struct timeval	last_time = {0, 0};
@@ -67,13 +86,12 @@ int	should_update_frame(void)
 	long					elapsed_time;
 	int						frame_time;
 
-	frame_time = 26667; // 16.667ms para ~60 FPS
+	frame_time = 26667;
 	gettimeofday(&current_time, NULL);
 	elapsed_time = (current_time.tv_sec - last_time.tv_sec) * 1000000
 		+ (current_time.tv_usec - last_time.tv_usec);
 	if (elapsed_time < frame_time)
-		return (0); // Ainda não passou o tempo necessário
-	last_time = current_time; // Atualiza o tempo do último frame
-	return (1);               // Indica que é hora de atualizar o frame
+		return (0);
+	last_time = current_time;
+	return (1);
 }
-

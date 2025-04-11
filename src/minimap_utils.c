@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 12:58:18 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:16:01 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:29:17 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,8 @@ void	draw_direction_line(t_player *player, t_game *game)
 void	draw_player(t_game *game, int center_x, int center_y)
 {
 	int	size;
-	int	color;
 
 	size = 4;
-	color = 0xFF0000;
 	draw_direction_line(&game->player, game);
-	draw_square(center_x - size / 2, center_y - size / 2, size, color, game);
+	draw_square(center_x - size / 2, center_y - size / 2, size, game);
 }
