@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 17:05:11 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:28:09 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void			init_player(t_game *game);
 int				clean_game(t_game *game);
 int				draw_loop(t_game *game);
 
-void			draw_square(int x, int y, int size, int color, t_game *game);
+void			draw_square(int x, int y, int size, t_game *game);
 void			ft_put_img(t_game *game, void *image, int x, int y);
 void			ft_put_pixel(int x, int y, int color, t_game *game);
 void			clear_image(t_game *game);

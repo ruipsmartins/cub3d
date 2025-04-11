@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 11:51:58 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:09:48 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 17:28:44 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_minimap_tiles(t_game *game, t_minimap *minimap)
 			}
 			if (game->map_copy[y][x] == '1')
 				draw_square(minimap->draw_x, minimap->draw_y,
-					minimap->tile_size, 0x0000FF, game);
+					minimap->tile_size, game);
 			x++;
 		}
 		y++;
