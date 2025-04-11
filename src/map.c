@@ -1,47 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/11 18:10:39 by addicted          #+#    #+#             */
+/*   Updated: 2025/04/11 18:10:40 by addicted         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./cub3D.h"
 
-int is_valid_map_char(char c)
+static int	init_map_copy(t_game *game, int i)
 {
-    return (c == '0' || c == '1' || c == 'N' || c == 'S' ||
-            c == 'E' || c == 'W' || c == '2' || ft_isspace(c));
-}
+	int	height;
 
-void	check_map(t_game *game)
-{
-	int	i;
-	int	k;
-
-	i = 0;
-	k = 0;
-	while (game->map_copy[i])
+	height = 0;
+	while (game->map[height])
+		height++;
+	height = height - i;
+	game->map_copy = ft_calloc(height + 1, sizeof(char *));
+	game->map_height = height;
+	game->map_copy[height] = NULL;
+	if (!game->map_copy)
 	{
-		k = 0;
-		while (game->map_copy[i][k])
-		{
-			if (!is_valid_map_char(game->map_copy[i][k]))
-			{
-				printf("char: %c\n", game->map_copy[i][k]);
-				printf("Error\nInvalid character in map\n");
-				free_all_maps(game);
-				exit(1);
-			}
-
-			// Fix space in map
-			if (ft_isspace(game->map_copy[i][k]))
-				game->map_copy[i][k] = '1';
-			k++;
-		}
-		i++;
+		printf("Error\nMemory allocation failed\n");
+		exit(1);
 	}
+	return (height);
 }
 
 int	skip_def(t_game *game)
 {
 	int	i;
-	int	height;
 
 	i = 0;
-	height = 0;
 	while (game->map[i] && game->map[i][0] != '1'
 		&& !ft_isspace(game->map[i][0]))
 		i++;
@@ -51,72 +45,56 @@ int	skip_def(t_game *game)
 		free_single_map(game->map);
 		exit(1);
 	}
-	while (game->map[height])
-		height++;
-	height = height - i;
-	game->map_copy = ft_calloc(height + 1, sizeof(char *)); /// melhor comecar tudo com ft_calloc para nao dar cond jump
-	game->map_height = height; // Store the height of the map
-	//
-	game->map_copy[height] = NULL;
-	//
-	if (!game->map_copy)
+	return (i);
+}
+
+static void	allocate_map_line(t_game *game, int i)
+{
+	game->map_copy[i] = malloc(sizeof(char) * (game->map_len + 1));
+	if (!game->map_copy[i])
 	{
 		printf("Error\nMemory allocation failed\n");
 		exit(1);
 	}
-	return (i);
 }
 
-void	print_map(char **map)
+static void	copy_map_line(char *src, char *dst, int map_len)
 {
-	int	i;
+	int	k;
 
-	i = 0;
-	while (map[i])
+	k = 0;
+	while (src[k] && src[k] != '\n')
 	{
-		printf("%s\n", map[i]);
-		i++;
+		if (src[k] == '1' || ft_isspace(src[k]))
+			dst[k] = '1';
+		else
+			dst[k] = src[k];
+		k++;
 	}
+	while (k < map_len)
+	{
+		dst[k] = '2';
+		k++;
+	}
+	dst[k] = '\0';
 }
 
 void	copy_map(t_game *game)
 {
 	int		skip;
 	char	**map;
-	int		k;
 	int		i;
 
 	skip = skip_def(game);
 	map = game->map + skip;
-	k = 0;
+	init_map_copy(game, skip);
 	i = 0;
 	while (map[i])
 	{
-			game->map_copy[i] = malloc(sizeof(char) * (game->map_len + 1));
-			if (!game->map_copy[i])
-			{
-				printf("Error\nMemory allocation failed\n");
-				exit(1);
-			}
-			k = 0;
-			while (map[i][k] && map[i][k] != '\n')
-			{
-				if (map[i][k] == '1' || ft_isspace(map[i][k]))
-					game->map_copy[i][k] = '1';
-				else
-					game->map_copy[i][k] = map[i][k];
-				k++;
-			}
-			while (k < game->map_len)
-			{
-				game->map_copy[i][k] = '2';
-				k++;
-			}
-			game->map_copy[i][k] = '\0';
+		allocate_map_line(game, i);
+		copy_map_line(map[i], game->map_copy[i], game->map_len);
 		i++;
 	}
 	game->map_copy[i] = NULL;
-	//print_map(game->map_copy);
 	check_map(game);
-//print_map(game->map_copy);
 }
