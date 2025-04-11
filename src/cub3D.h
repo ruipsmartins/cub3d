@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 16:19:32 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:40:53 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,19 @@ void			ff_map(t_game *game);
 void			print_map(char **map);
 void			draw_minimap(t_game *game);
 
+// texture utils
+void			check_for_xpm(char *str, t_game *game);
+void			get_north_texture(t_game *game, char *line);
+void			get_south_texture(t_game *game, char *line);
+void			get_west_texture(t_game *game, char *line);
+void			get_east_texture(t_game *game, char *line);
+void			validate_textures(t_game *game);
+
+// texture core
+void			check_duplicate_textures(t_game *game, int index);
+void			process_texture_line(t_game *game, int index);
 void			get_textures(t_game *game);
+
 void			get_rgb(t_game *game);
 void			copy_map(t_game *game);
 
