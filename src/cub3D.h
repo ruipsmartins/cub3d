@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/10 13:32:06 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:16:44 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define LEFT 65361
 # define RIGHT 65363
 # define PLAYER_RADIUS 5 // Define um raio para o jogador
-
 
 # include "../libs/libft/libft.h"
 # include "../libs/minilibx-linux/mlx.h"
@@ -53,12 +52,12 @@ typedef struct s_player
 
 typedef struct s_minimap
 {
-	int	tile_size;
-	int	center_x;
-	int	center_y;
-	int	minimap_radius;
-	int	draw_x;
-	int	draw_y;
+	int			tile_size;
+	int			center_x;
+	int			center_y;
+	int			minimap_radius;
+	int			draw_x;
+	int			draw_y;
 }				t_minimap;
 
 typedef struct s_img
@@ -158,7 +157,6 @@ void			perform_dda(t_ray *ray, t_game *game);
 void			init_ray(t_ray *ray, t_player *player, float ray_angle);
 int				get_texture_pixel(t_img *texture, int x, int y);
 
-
 // player movement
 int				key_press(int keycode, t_game *game);
 int				key_release(int keycode, t_game *game);
@@ -174,7 +172,7 @@ char			**open_map(char *path);
 void			free_all_maps(t_game *game);
 void			map_len(t_game *game);
 int				skip_def(t_game *game);
-int 			flood_fill(t_game *game, int y, int x, char **map);
+int				flood_fill(t_game *game, int y, int x, char **map);
 void			ff_map(t_game *game);
 void			print_map(char **map);
 void			draw_minimap(t_game *game);
@@ -186,20 +184,18 @@ void			copy_map(t_game *game);
 // minimap
 void			draw_minimap(t_game *game);
 void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
-void			draw_minimap_background(t_game *game, int center_x, int center_y,
-					int minimap_radius);
+void			draw_minimap_background(t_game *game, int center_x,
+					int center_y, int minimap_radius);
 void			init_minimap(t_minimap *minimap);
-void 			draw_player(t_game *game, int center_x, int center_y);
+void			draw_player(t_game *game, int center_x, int center_y);
 void			draw_direction_line(t_player *player, t_game *game);
 void			draw_minimap_tiles(t_game *game, t_minimap *minimap);
-
-
-
+void			draw_frame(t_img *src, t_game *game);
 
 // utils
 int				should_update_frame(void);
-void free_images(t_game *game);
-void free_path(t_game *game);
-void	free_map(t_game *game);
+void			free_images(t_game *game);
+void			free_path(t_game *game);
+void			free_map(t_game *game);
 
 #endif

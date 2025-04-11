@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRCS_DIR = src
 SRCS_FILES = main.c init_game.c init_player.c clean_game.c player_move.c open_map.c texture.c rgb.c map.c \
-raycasting.c utils.c player_utils.c raycasting_utils.c minimap.c minimap_utils.c\
+raycasting.c utils.c player_utils.c raycasting_utils.c minimap.c minimap_frame.c minimap_utils.c\
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 
@@ -58,6 +58,6 @@ git:
 	git status
 
 valgrind:
-	valgrind --show-leak-kinds=all --leak-check=full ./cub3D maps/map2.ber
+	valgrind --show-leak-kinds=all --leak-check=full ./cub3D maps/map2.cub
 
 .PHONY: all clean fclean re git valgrind

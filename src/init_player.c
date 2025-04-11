@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/09 16:29:41 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:16:23 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	find_player_angle(t_game *game)
 
 void	init_player(t_game *game)
 {
-	// ft_bzero(&game->player, sizeof(t_player));
 	printf("init_player\n");
 	find_player_pos(game);
 	find_player_angle(game);
