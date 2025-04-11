@@ -5,7 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g -I include
 
 SRCS_DIR = src
 SRCS_FILES = main.c init_game.c init_player.c clean_game.c player_move.c open_map.c texture.c rgb.c map.c \
-raycasting.c utils.c player_utils.c raycasting_utils.c minimap.c minimap_frame.c minimap_utils.c texture_utils.c rgb_utils.c
+raycasting.c utils.c player_utils.c raycasting_utils.c minimap.c minimap_frame.c minimap_utils.c texture_utils.c rgb_utils.c flood_fill.c
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRCS_FILES))
 

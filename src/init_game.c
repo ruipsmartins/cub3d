@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/04/11 16:33:41 by addicted         ###   ########.fr       */
+/*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
+/*   Updated: 2025/04/11 17:16:50 by addicted         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,32 +39,6 @@ void	load_texture(t_game *game, t_img *texture, char *path)
 	}
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp,
 			&texture->size_line, &texture->endian);
-}
-
-int	flood_fill(t_game *game, int y, int x, char **map)
-{
-	if (y < 0 || y >= game->map_height || x < 0 || x >= game->map_len)
-	{
-		printf("Error\nFlood fill out of bounds\n");
-		free_single_map(map);
-		clean_game(game);
-		exit(1);
-	}
-	if (map[y][x] == '1')
-		return (0);
-	if (map[y][x] == '2')
-	{
-		printf("Error\nMap not closed\n");
-		free_single_map(map);
-		clean_game(game);
-		exit(1);
-	}
-	map[y][x] = '1';
-	flood_fill(game, y + 1, x, map);
-	flood_fill(game, y - 1, x, map);
-	flood_fill(game, y, x + 1, map);
-	flood_fill(game, y, x - 1, map);
-	return (1);
 }
 
 void	load_textures(t_game *game)
