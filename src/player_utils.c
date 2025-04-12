@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 17:04:00 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/03/31 11:21:44 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:16:59 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ int	is_colliding(t_game *game, float x, float y)
 	map_x = (int)(x) / 64;
 	map_y = (int)(y) / 64;
 	return (game->map_copy[map_y][map_x] == '1');
+}
+
+void	check_multiple_players(t_game *game, int x, int y)
+{
+	if (game->player.x)
+	{
+		free_all_maps(game);
+		printf("Error\nPlayer positions\n");
+		exit(1);
+	}
+	printf("x: %d y: %d\n", x, y);
+	game->player.x = x;
+	game->player.y = y;
 }

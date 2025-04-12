@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:25:35 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 18:11:55 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:16:37 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ typedef struct s_textures
 
 typedef struct s_ray
 {
-	float		proj_plane_dist;
 	float		cos_angle;
 	float		sin_angle;
 	float		ray_x;
@@ -161,6 +160,7 @@ void			rotate_player(t_player *player);
 void			move_in_direction(t_player *player, t_game *game, float dx,
 					float dy);
 void			move_player(t_player *player, t_game *game);
+void			check_multiple_players(t_game *game, int x, int y);
 
 // map
 char			**open_map(char *path);
@@ -177,7 +177,7 @@ void			map_len(t_game *game);
 void			ff_map(t_game *game);
 void			check_map(t_game *game);
 
-	// texture utils
+// texture utils
 void			check_for_xpm(char *str, t_game *game);
 void			get_north_texture(t_game *game, char *line);
 void			get_south_texture(t_game *game, char *line);

@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 18:11:16 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:17:44 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./cub3D.h"
-
-static void	check_multiple_players(t_game *game, int x, int y)
-{
-	if (game->player.x)
-	{
-		free_all_maps(game);
-		printf("Error\nPlayer positions\n");
-		exit(1);
-	}
-	printf("x: %d y: %d\n", x, y);
-	game->player.x = x;
-	game->player.y = y;
-}
 
 void	find_player_pos(t_game *game)
 {

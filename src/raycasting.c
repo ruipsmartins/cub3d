@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:35:55 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/11 17:35:36 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:14:20 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	perform_dda(t_ray *ray, t_game *game)
 // and the height of the wall to be drawn
 void	calculate_wall_projection(t_ray *ray, t_player *player, t_game *game)
 {
+	float	proj_plane_dist;
+
+	proj_plane_dist = (WINDOW_WIDTH / 2) / tan(0.55);
 	ray->dist = fixed_dist(game, player, ray);
-	ray->height = (BLOCK / ray->dist) * ray->proj_plane_dist;
+	ray->height = (BLOCK / ray->dist) * proj_plane_dist;
 	ray->start_y = (WINDOW_HEIGHT - ray->height) / 2;
 	ray->end = ray->start_y + ray->height;
 	if (ray->start_y < 0)

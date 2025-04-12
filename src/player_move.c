@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 17:04:00 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/10 16:20:54 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:04:22 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@ void	rotate_player(t_player *player)
 		player->angle = 2 * PI;
 }
 
-void move_in_direction(t_player *player, t_game *game, float dx, float dy)
+void	move_in_direction(t_player *player, t_game *game, float dx, float dy)
 {
-    float new_x;
-    float new_y;
+	float	new_x;
+	float	new_y;
 
 	new_x = player->x + dx;
 	new_y = player->y;
-    if (!is_colliding(game, new_x + PLAYER_RADIUS, player->y) &&
-        !is_colliding(game, new_x - PLAYER_RADIUS, player->y))
-    {
-        player->x = new_x;
-    }
-    new_y = player->y + dy;
-    if (!is_colliding(game, player->x, new_y + PLAYER_RADIUS) &&
-        !is_colliding(game, player->x, new_y - PLAYER_RADIUS))
-    {
-        player->y = new_y;
-    }
+	if (!is_colliding(game, new_x + PLAYER_RADIUS, player->y)
+		&& !is_colliding(game, new_x - PLAYER_RADIUS, player->y))
+	{
+		player->x = new_x;
+	}
+	new_y = player->y + dy;
+	if (!is_colliding(game, player->x, new_y + PLAYER_RADIUS)
+		&& !is_colliding(game, player->x, new_y - PLAYER_RADIUS))
+	{
+		player->y = new_y;
+	}
 }
 
 void	move_player(t_player *player, t_game *game)
