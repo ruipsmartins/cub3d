@@ -33,7 +33,7 @@ void	load_texture(t_game *game, t_img *texture, char *path)
 			&texture->height);
 	if (!texture->img)
 	{
-		printf("Erro ao carregar a textura %s\n", path);
+		printf("Error\nFailed to load texture %s\n", path);
 		game->return_value = 1;
 		clean_game(game);
 	}

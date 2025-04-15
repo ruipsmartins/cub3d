@@ -25,8 +25,6 @@ void	check_for_xpm(char *str, t_game *game)
 	if (str[len - 1] != 'm' || str[len - 2] != 'p'
 		|| str[len - 3] != 'x' || str[len - 4] != '.')
 	{
-		printf("string = %s \n", str);
-		printf("c = %c\n", str[len - 1]);
 		printf("Error\nTextures should end with \".xpm\"");
 		printf(" and have no spaces after\n");
 		clean_game(game);

@@ -32,7 +32,10 @@ void	check_duplicate_textures(t_game *game, int index)
 			&& game->path_we != NULL)
 		|| (game->map[index][0] == 'E' && game->map[index][1] == 'A'
 			&& game->path_ea != NULL))
+	{
 		ft_printf("Error\nDuplicate texture\n");
+		clean_game(game);
+	}
 }
 
 void	process_texture_line(t_game *game, int index)

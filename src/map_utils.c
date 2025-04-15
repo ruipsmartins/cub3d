@@ -31,7 +31,6 @@ void	check_map(t_game *game)
 		{
 			if (!is_valid_map_char(game->map_copy[i][k]))
 			{
-				printf("char: %c\n", game->map_copy[i][k]);
 				printf("Error\nInvalid character in map\n");
 				free_all_maps(game);
 				exit(1);

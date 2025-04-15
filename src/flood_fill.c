@@ -52,7 +52,8 @@ void	check_wrong_options(t_game *game)
 			&& !ft_isspace(str[0]))
 		{
 			printf("ERROR\nWrong options on map file\n");
-			exit(0);
+			clean_game(game);
+			//exit(0);
 		}
 		i++;
 		str = game->map[i];
