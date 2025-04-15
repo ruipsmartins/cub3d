@@ -1,3 +1,13 @@
+NO ./img/Brick_Wall.xpm
+SO ./img/Brick_Wall_Cracked.xpm
+WE ./img/Rocky_Road_64x64.xpm
+EA ./img/Dirty_Mossy_Tiles_64x64.xpm
+
+
+F 250,100,0
+C 10,0,110
+
+
 111111111111111
 1C000000000C101
 1C1C1C111010101
