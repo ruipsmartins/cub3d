@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 17:04:00 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/12 16:16:59 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:43:39 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	check_multiple_players(t_game *game, int x, int y)
 		printf("Error\nPlayer positions\n");
 		exit(1);
 	}
-	printf("x: %d y: %d\n", x, y);
 	game->player.x = x;
 	game->player.y = y;
 }

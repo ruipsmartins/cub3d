@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:20:25 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:47:49 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void	init_game(t_game *game)
 	get_rgb(game);
 	init_mlx_window(game);
 	load_textures(game);
-	init_player(game);
 }

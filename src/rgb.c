@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 16:53:57 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 16:56:02 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:42:07 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	get_floor_color(t_game *game, char *line)
 	number = rgb_str_to_hex(color_str);
 	game->color_floor = number;
 	free(color_str);
-	printf("Floor color: %d\n", number);
 }
 
 void	get_ceiling_color(t_game *game, char *line)
@@ -33,7 +32,6 @@ void	get_ceiling_color(t_game *game, char *line)
 	number = rgb_str_to_hex(color_str);
 	game->color_ceiling = number;
 	free(color_str);
-	printf("Ceiling color: %d\n", game->color_ceiling);
 }
 
 static void	check_duplicate_colors(t_game *game, int i)

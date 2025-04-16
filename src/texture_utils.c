@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 15:35:00 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:44:17 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:41:07 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,22 @@ void	get_north_texture(t_game *game, char *line)
 {
 	check_for_xpm(line, game);
 	game->path_no = ft_strdup(line + 3);
-	printf("NO: %s\n", game->path_no);
 }
 
 void	get_south_texture(t_game *game, char *line)
 {
 	check_for_xpm(line, game);
 	game->path_so = ft_strdup(line + 3);
-	printf("SO: %s\n", game->path_so);
 }
 
 void	get_west_texture(t_game *game, char *line)
 {
 	check_for_xpm(line, game);
 	game->path_we = ft_strdup(line + 3);
-	printf("WE: %s\n", game->path_we);
 }
 
 void	get_east_texture(t_game *game, char *line)
 {
 	check_for_xpm(line, game);
 	game->path_ea = ft_strdup(line + 3);
-	printf("EA: %s\n", game->path_ea);
 }

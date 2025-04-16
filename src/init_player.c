@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:43:28 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/12 16:17:44 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/16 10:48:10 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ static void	check_invalid_angle(t_game *game)
 {
 	if (game->player.angle == -1)
 	{
-		printf("x: %d y: %d\n", (int)game->player.x, (int)game->player.y);
-		printf("map: %c\n",
-			game->map_copy[(int)game->player.y][(int)game->player.x]);
 		printf("Error\nInvalid player position\n");
 		exit(1);
 	}
@@ -69,9 +66,7 @@ void	find_player_angle(t_game *game)
 		free_all_maps(game);
 		exit(1);
 	}
-	printf("x: %f y: %f\n", game->player.x, game->player.y);
 	set_player_angle(game);
-	printf("angle: %f\n", game->player.angle);
 	check_invalid_angle(game);
 	game->player.x = game->player.x * BLOCK + 32;
 	game->player.y = game->player.y * BLOCK + 32;
@@ -79,7 +74,6 @@ void	find_player_angle(t_game *game)
 
 void	init_player(t_game *game)
 {
-	printf("init_player\n");
 	find_player_pos(game);
 	find_player_angle(game);
 	game->player.key_up = false;
