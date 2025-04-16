@@ -28,7 +28,9 @@ int	atoi_for_rgb(const char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	if (str[i] != '\0' && !ft_isspace(str[i]) && str[i] != ',')
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] != '\0' && str[i] != ',')
 		return (-1);
 	return (res * sign);
 }
