@@ -58,7 +58,7 @@ static void	allocate_map_line(t_game *game, int i)
 	}
 }
 
-static void	copy_map_line(char *src, char *dst, int map_len)
+static void	copy_map_line(char *src, int i, t_game *game)
 {
 	int	k;
 
@@ -66,17 +66,22 @@ static void	copy_map_line(char *src, char *dst, int map_len)
 	while (src[k] && src[k] != '\n')
 	{
 		if (src[k] == '1' || ft_isspace(src[k]))
-			dst[k] = '1';
+			game->map_copy[i][k] = '1';
+		else if (src[k] == '2')
+		{
+			ft_putstr_fd("Error\nInvalid map\n", 2);
+			clean_game(game);
+		}
 		else
-			dst[k] = src[k];
+			game->map_copy[i][k] = src[k];
 		k++;
 	}
-	while (k < map_len)
+	while (k < game->map_len)
 	{
-		dst[k] = '2';
+		game->map_copy[i][k] = '2';
 		k++;
 	}
-	dst[k] = '\0';
+	game->map_copy[i][k] = '\0';
 }
 
 void	copy_map(t_game *game)
@@ -92,7 +97,7 @@ void	copy_map(t_game *game)
 	while (map[i])
 	{
 		allocate_map_line(game, i);
-		copy_map_line(map[i], game->map_copy[i], game->map_len);
+		copy_map_line(map[i], i, game);
 		i++;
 	}
 	game->map_copy[i] = NULL;
