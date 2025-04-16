@@ -70,7 +70,7 @@ static void	copy_map_line(char *src, int i, t_game *game)
 			game->map_copy[i][k] = '1';
 		else if (src[k] == '2')
 		{
-			ft_putstr_fd("Error\nInvalid map\n", 2);
+			ft_putstr_fd("Error\nInvalid map file\n", 2);
 			clean_game(game);
 		}
 		else
