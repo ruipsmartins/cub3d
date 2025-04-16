@@ -25,8 +25,8 @@ static int	init_map_copy(t_game *game, int i)
 	game->map_copy[height] = NULL;
 	if (!game->map_copy)
 	{
-		printf("Error\nMemory allocation failed\n");
-		exit(1);
+		ft_putstr_fd("Error\nMemory allocation failed\n", 2);
+		clean_game(game);
 	}
 	return (height);
 }
@@ -41,7 +41,7 @@ int	skip_def(t_game *game)
 		i++;
 	if (!game->map[i])
 	{
-		printf("Error\nNo map found\n");
+		ft_putstr_fd("Error\nNo map found\n", 2);
 		free_single_map(game->map);
 		exit(1);
 	}
@@ -53,7 +53,8 @@ static void	allocate_map_line(t_game *game, int i)
 	game->map_copy[i] = malloc(sizeof(char) * (game->map_len + 1));
 	if (!game->map_copy[i])
 	{
-		printf("Error\nMemory allocation failed\n");
+		ft_putstr_fd("Error\nMemory allocation failed\n", 2);
+		clean_game(game);
 		exit(1);
 	}
 }

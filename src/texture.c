@@ -17,7 +17,7 @@ void	validate_textures(t_game *game)
 	if (game->path_no == NULL || game->path_so == NULL
 		|| game->path_we == NULL || game->path_ea == NULL)
 	{
-		ft_printf("Error\nMissing texture\n");
+		ft_putstr_fd("Error\nMissing texture\n", 2);
 		clean_game(game);
 	}
 }
@@ -33,7 +33,7 @@ void	check_duplicate_textures(t_game *game, int index)
 		|| (game->map[index][0] == 'E' && game->map[index][1] == 'A'
 			&& game->path_ea != NULL))
 	{
-		ft_printf("Error\nDuplicate texture\n");
+		ft_putstr_fd("Error\nDuplicate texture\n", 2);
 		clean_game(game);
 	}
 }

@@ -33,8 +33,9 @@ void	load_texture(t_game *game, t_img *texture, char *path)
 			&texture->height);
 	if (!texture->img)
 	{
-		printf("Error\nFailed to load texture %s\n", path);
-		game->return_value = 1;
+		ft_putstr_fd("Error\nFailed to load texture ", 2);
+		ft_putstr_fd(path, 2);
+		ft_putstr_fd("\n", 2);
 		clean_game(game);
 	}
 	texture->pixel_buffer = mlx_get_data_addr(texture->img, &texture->bpp,
@@ -56,13 +57,13 @@ static void	init_mlx_window(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		printf("Error\nFailed to initialize mlx\n");
+		ft_putstr_fd("Error\nFailed to initialize mlx\n", 2);
 		exit(1);
 	}
 	game->win = mlx_new_window(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D");
 	if (!game->win)
 	{
-		printf("Error\nFailed to create window\n");
+		ft_putstr_fd("Error\nFailed to create window\n", 2);
 		exit(1);
 	}
 	game->screen_img.img = mlx_new_image(game->mlx, WINDOW_WIDTH,
@@ -74,10 +75,10 @@ static void	init_mlx_window(t_game *game)
 
 void	init_game(t_game *game)
 {
-	game->return_value = 0;
+	game->return_value = 1;
 	if (!game->map)
 	{
-		printf("Error\nDidnt find the map!\n");
+		ft_putstr_fd("Error\nDidnt find the map!\n", 2);
 		exit(1);
 	}
 	map_len(game);

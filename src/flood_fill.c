@@ -16,19 +16,17 @@ int	flood_fill(t_game *game, int y, int x, char **map)
 {
 	if (y < 0 || y >= game->map_height || x < 0 || x >= game->map_len)
 	{
-		printf("Error\nFlood fill out of bounds\n");
+		ft_putstr_fd("Error\nFlood fill out of bounds\n", 2);
 		free_single_map(map);
 		clean_game(game);
-		exit(1);
 	}
 	if (map[y][x] == '1')
 		return (0);
 	if (map[y][x] == '2')
 	{
-		printf("Error\nMap not closed\n");
+		ft_putstr_fd("Error\nMap not closed\n", 2);
 		free_single_map(map);
 		clean_game(game);
-		exit(1);
 	}
 	map[y][x] = '1';
 	flood_fill(game, y + 1, x, map);
@@ -51,7 +49,7 @@ void	check_wrong_options(t_game *game)
 			&& str[0] != 'F' && str[0] != 'C' && str[0] != '1' && str[0] != '0'
 			&& !ft_isspace(str[0]))
 		{
-			printf("Error\nWrong options on map file\n");
+			ft_putstr_fd("Error\nWrong options on map file\n", 2);
 			clean_game(game);
 		}
 		if (str[0] == 'N' || str[0] == 'S' || str[0] == 'W' || str[0] == 'E')
@@ -59,7 +57,7 @@ void	check_wrong_options(t_game *game)
 			if ((ft_strncmp(str, "NO", 2) * ft_strncmp(str, "SO", 2)
 					* ft_strncmp(str, "WE", 2) * ft_strncmp(str, "EA", 2)) != 0)
 			{
-				printf("Error\nWrong options on map file\n");
+				ft_putstr_fd("Error\nWrong options on map file\n", 2);
 				clean_game(game);
 			}
 		}
@@ -102,8 +100,8 @@ void	ff_map(t_game *game)
 	map = malloc(sizeof(char *) * (game->map_height + 1));
 	if (!map)
 	{
-		printf("ERROR\n Failed malloc on ff_map\n");
-		exit(1);
+		ft_putstr_fd("Error\nFailed malloc on ff_map\n", 2);
+		clean_game(game);
 	}
 	while (game->map_copy[i])
 	{

@@ -30,7 +30,10 @@ int	key_press(int keycode, t_game *game)
 	if (keycode == RIGHT)
 		player->right_rotate = true;
 	if (keycode == 65307)
+	{
+		game->return_value = 0;
 		clean_game(game);
+	}
 	return (0);
 }
 
@@ -69,7 +72,7 @@ void	check_multiple_players(t_game *game, int x, int y)
 	if (game->player.x)
 	{
 		free_all_maps(game);
-		printf("Error\nPlayer positions\n");
+		ft_putstr_fd("Error\nPlayer positions\n", 2);
 		exit(1);
 	}
 	game->player.x = x;

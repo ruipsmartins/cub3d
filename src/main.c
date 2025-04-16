@@ -43,9 +43,15 @@ void	check_cub(char *str)
 	if (str[ft_strlen(str) - 1] != 'b' || str[ft_strlen(str) - 2] != 'u'
 		|| str[ft_strlen(str) - 3] != 'c' || str[ft_strlen(str) - 4] != '.')
 	{
-		printf("ERROR\nMap file has to end with \".cub\"\n");
+		ft_putstr_fd("Error\nMap file has to end with \".cub\"\n", 2);
 		exit(1);
 	}
+}
+
+int	end_of_game(t_game *game)
+{
+	game->return_value = 0;
+	return (clean_game(game));
 }
 
 int	main(int argc, char **argv)
@@ -61,7 +67,7 @@ int	main(int argc, char **argv)
 	check_cub(argv[1]);
 	game.map = open_map(argv[1]);
 	init_game(&game);
-	mlx_hook(game.win, DestroyNotify, NoEventMask, clean_game, &game);
+	mlx_hook(game.win, DestroyNotify, NoEventMask, end_of_game, &game);
 	mlx_hook(game.win, KeyPress, KeyPressMask, key_press, &game);
 	mlx_hook(game.win, KeyRelease, KeyReleaseMask, key_release, &game);
 	mlx_loop_hook(game.mlx, draw_loop, &game);

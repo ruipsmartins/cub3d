@@ -18,15 +18,15 @@ void	check_for_xpm(char *str, t_game *game)
 
 	if (!str)
 	{
-		ft_printf("Error\nMissing texture\n");
+		ft_putstr_fd("Error\nMissing texture\n", 2);
 		clean_game(game);
 	}
 	len = ft_strlen(str);
 	if (str[len - 1] != 'm' || str[len - 2] != 'p'
 		|| str[len - 3] != 'x' || str[len - 4] != '.')
 	{
-		printf("Error\nTextures should end with \".xpm\"");
-		printf(" and have no spaces after\n");
+		ft_putstr_fd("Error\nTextures should end with \".xpm\"", 2);
+		ft_putstr_fd(" and have no spaces after\n", 2);
 		clean_game(game);
 	}
 }

@@ -49,7 +49,7 @@ static void	check_duplicate_colors(t_game *game, int i)
 	if ((game->map[i][0] == 'F' && game->color_floor >= 0)
 		|| (game->map[i][0] == 'C' && game->color_ceiling >= 0))
 	{
-		printf("Error\nDuplicate floor or ceiling color\n");
+		ft_putstr_fd("Error\nDuplicate floor or ceiling color\n", 2);
 		free_all_maps(game);
 		free_path(game);
 		exit(1);
@@ -73,7 +73,7 @@ void	get_rgb(t_game *game)
 	}
 	if (game->color_floor < 0 || game->color_ceiling < 0)
 	{
-		printf("Error\nMissing floor or ceiling color\n");
+		ft_putstr_fd("Error\nMissing floor or ceiling color\n", 2);
 		free_all_maps(game);
 		free_path(game);
 		exit(1);

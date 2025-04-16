@@ -52,7 +52,8 @@ static void	check_invalid_angle(t_game *game)
 {
 	if (game->player.angle == -1)
 	{
-		printf("Error\nInvalid player position\n");
+		ft_putstr_fd("Error\nInvalid player position\n", 2);
+		free_all_maps(game);
 		exit(1);
 	}
 }
@@ -62,7 +63,7 @@ void	find_player_angle(t_game *game)
 	game->player.angle = -1;
 	if (game->player.x == 0 || game->player.y == 0)
 	{
-		printf("Error\nNo player position found\n");
+		ft_putstr_fd("Error\nNo player position found\n", 2);
 		free_all_maps(game);
 		exit(1);
 	}

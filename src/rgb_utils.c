@@ -58,14 +58,14 @@ int	rgb_str_to_hex(char *rgb_str)
 	{
 		rgb[i] = atoi_for_rgb(token);
 		if (!validate_rgb_value(rgb[i]))
-			return (printf("Error\nInvalid RGB format\n") * 0 - 1);
+			return (write(2, "Error\nInvalid RGB format\n", 26) * 0 - 1);
 		i++;
 		token = strtok(NULL, ",");
 	}
 	if (i != 3)
 	{
 		free(token);
-		return (printf("Error\nInvalid RGB format\n") * 0 - 1);
+		return (write(2, "Error\nInvalid RGB format\n", 26) * 0 - 1);
 	}
 	free(token);
 	new_color = combine_rgb(rgb[0], rgb[1], rgb[2]);
