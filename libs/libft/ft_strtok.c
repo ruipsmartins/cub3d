@@ -3,53 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtok.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruidos-s <ruidos-s@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:38:57 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/14 16:39:51 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:59:20 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_find_next_token(char *str, const char *delim)
-{
-	while (*str && ft_strchr(delim, *str))
-		str++;
-	return (str);
-}
-
-static char	*ft_find_token_end(char *str, const char *delim)
-{
-	while (*str && !ft_strchr(delim, *str))
-		str++;
-	return (str);
-}
-
 char	*ft_strtok(char *str, const char *delim)
 {
 	static char	*last;
-	char		*token_start;
-	char		*token_end;
+	char		*start;
 
-	if (str == NULL)
-		str = last;
-	if (str == NULL)
+	if (str)
+		last = str;
+	if (!last)
 		return (NULL);
-	str = ft_find_next_token(str, delim);
-	if (*str == '\0')
+	while (*last && ft_strchr(delim, *last))
+		last++;
+	if (!*last)
+		return (NULL);
+	while (*last && ft_strchr(delim, *last))
+		last++;
+	start = last;
+	while (*last && !ft_strchr(delim, *last))
+		last++;
+	if (*last)
 	{
-		last = NULL;
-		return (NULL);
+		*last = '\0';
+		last++;
 	}
-	token_start = str;
-	token_end = ft_find_token_end(str, delim);
-	if (*token_end == '\0')
-		last = NULL;
 	else
-	{
-		*token_end = '\0';
-		last = token_end + 1;
-	}
-	return (token_start);
+		last = NULL;
+	return (start);
 }
