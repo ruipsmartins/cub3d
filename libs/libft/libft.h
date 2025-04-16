@@ -72,6 +72,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+char	*ft_strtok(char *str, const char *delim);
 
 //Bonus part
 t_list	*ft_lstnew(void *content);

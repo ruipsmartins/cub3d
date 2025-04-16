@@ -53,14 +53,14 @@ int	rgb_str_to_hex(char *rgb_str)
 	int		new_color;
 
 	i = 0;
-	token = strtok(rgb_str, ",");
+	token = ft_strtok(rgb_str, ",");
 	while (token != NULL && i < 3)
 	{
 		rgb[i] = atoi_for_rgb(token);
 		if (!validate_rgb_value(rgb[i]))
 			return (write(2, "Error\nInvalid RGB format\n", 26) * 0 - 1);
 		i++;
-		token = strtok(NULL, ",");
+		token = ft_strtok(NULL, ",");
 	}
 	if (i != 3)
 	{

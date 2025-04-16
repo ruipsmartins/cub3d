@@ -23,6 +23,7 @@ SRCS = 	ft_atol.c  ft_atoi.c  ft_isalnum.c  ft_isalpha.c  ft_isascii.c  ft_isdig
 		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_isspace.c\
 		ft_printf.c print_format.c printf_putchar.c printf_putstr.c printf_putnbr.c printf_putptr.c\
 		get_next_line.c get_next_line_utils.c ft_strndup.c ft_strcpy.c ft_realloc.c\
+		ft_strtok.c
 
 BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c\
 		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c 
@@ -56,7 +57,7 @@ fclean: clean
 	@rm -f $(NAME) ./test*
 	@echo "🗑️ Fully cleaned project"
 
-re: fclean all bonus
+re: fclean all
 
 test: $(SRCS) main.c
 	@$(CC) $(CFLAGS) $(SRCS) $(BONUS) main.c -o teste_main
