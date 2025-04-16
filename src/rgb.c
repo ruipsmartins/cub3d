@@ -17,8 +17,13 @@ void	get_floor_color(t_game *game, char *line)
 	char	*color_str;
 	int		number;
 
-	color_str = ft_strdup(line + 2);
+	color_str = ft_strdup(line + 1);
 	number = rgb_str_to_hex(color_str);
+	if(number < 0)
+	{
+		free(color_str);
+		clean_game(game);
+	}
 	game->color_floor = number;
 	free(color_str);
 }
@@ -28,8 +33,14 @@ void	get_ceiling_color(t_game *game, char *line)
 	char	*color_str;
 	int		number;
 
-	color_str = ft_strdup(line + 2);
+	
+	color_str = ft_strdup(line + 1);
 	number = rgb_str_to_hex(color_str);
+	if(number < 0)
+	{
+		free(color_str);
+		clean_game(game);
+	}
 	game->color_ceiling = number;
 	free(color_str);
 }
