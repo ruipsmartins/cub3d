@@ -51,11 +51,19 @@ void	check_wrong_options(t_game *game)
 			&& str[0] != 'F' && str[0] != 'C' && str[0] != '1' && str[0] != '0'
 			&& !ft_isspace(str[0]))
 		{
-			printf("ERROR\nWrong options on map file\n");
+			printf("Error\nWrong options on map file\n");
 			clean_game(game);
 		}
-		i++;
-		str = game->map[i];
+		if (str[0] == 'N' || str[0] == 'S' || str[0] == 'W' || str[0] == 'E')
+		{
+			if ((ft_strncmp(str, "NO", 2) * ft_strncmp(str, "SO", 2)
+					* ft_strncmp(str, "WE", 2) * ft_strncmp(str, "EA", 2)) != 0)
+			{
+				printf("Error\nWrong options on map file\n");
+				clean_game(game);
+			}
+		}
+		str = game->map[++i];
 	}
 }
 
