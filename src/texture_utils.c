@@ -33,24 +33,40 @@ void	check_for_xpm(char *str, t_game *game)
 
 void	get_north_texture(t_game *game, char *line)
 {
+	char	*trimmed;
+
 	check_for_xpm(line, game);
-	game->path_no = ft_strdup(line + 3);
+	trimmed = ft_strtrim((line + 2), " ");
+	game->path_no = ft_strdup(trimmed);
+	free(trimmed);
 }
 
 void	get_south_texture(t_game *game, char *line)
 {
+	char	*trimmed;
+
 	check_for_xpm(line, game);
-	game->path_so = ft_strdup(line + 3);
+	trimmed = ft_strtrim((line + 2), " ");
+	game->path_so = ft_strdup(trimmed);
+	free(trimmed);
 }
 
 void	get_west_texture(t_game *game, char *line)
 {
+	char	*trimmed;
+
 	check_for_xpm(line, game);
-	game->path_we = ft_strdup(line + 3);
+	trimmed = ft_strtrim((line + 2), " ");
+	game->path_we = ft_strdup(trimmed);
+	free(trimmed);
 }
 
 void	get_east_texture(t_game *game, char *line)
 {
+	char	*trimmed;
+
 	check_for_xpm(line, game);
-	game->path_ea = ft_strdup(line + 3);
+	trimmed = ft_strtrim((line + 2), " ");
+	game->path_ea = ft_strdup(trimmed);
+	free(trimmed);
 }

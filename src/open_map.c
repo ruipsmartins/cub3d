@@ -33,7 +33,7 @@ static void	check_empty_line(char *line, char *map_data, int fd)
 {
 	if (line[0] == '\n')
 	{
-		ft_putstr_fd("Error\nEmpty line in map\n", 2);
+		ft_putstr_fd("Error\nWrong options on map file\n", 2);
 		free(line);
 		free(map_data);
 		close(fd);

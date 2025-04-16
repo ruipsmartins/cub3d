@@ -60,6 +60,6 @@ git:
 	git status
 
 valgrind:
-	valgrind --show-leak-kinds=all --track-fds=yes --leak-check=full ./cub3D maps/map2.cub
+	valgrind --show-leak-kinds=all --leak-check=full ./cub3D maps/map2.cub
 
 .PHONY: all clean fclean re git valgrind
