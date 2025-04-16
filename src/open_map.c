@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 16:49:32 by ruidos-s          #+#    #+#             */
-/*   Updated: 2025/04/16 11:55:56 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/16 13:01:04 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char	**open_map(char *path)
 	char	*holder;
 	char	**map;
 	bool	in_map;
+	int		i;
 
 	in_map = false;
 	fd = open(path, O_RDONLY);
@@ -32,17 +33,26 @@ char	**open_map(char *path)
 		printf("line: %s\n", line);
 		if (!line)
 			break ;
-		if (line[0] == '1')
-			in_map = true;
+		
+		i=0;
+		while (line[i])
+		{
+			if(line[i] == 'F' || line[i] == 'C' || line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+				break;
+			if (line[i] == '1')
+				in_map = true;
+			i++;
+		}
+
 		if (in_map)
 		{
-			if ( line[0] == '\n')
+			if (line[0] == '\n')
 			{
-				ft_putstr_fd("Empty line in map\n", 2);
+				ft_putstr_fd("Error\nEmpty line in map\n", 2);
 				free(line);
 				free(map_data);
 				close(fd);
-				return (NULL);
+				exit (1);
 			}
 		}
 		holder = map_data;
@@ -52,6 +62,13 @@ char	**open_map(char *path)
 	}
 	map = ft_split(map_data, '\n');
 	free(map_data);
+	i = 0;
+	while (map[i])
+	{
+		printf("map[%d]: %s\n", i, map[i]);
+		i++;
+	}
+
 	close(fd);
 	return (map);
 }
