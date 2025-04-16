@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flood_fill.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: addicted <addicted@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:11:35 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/11 17:36:23 by addicted         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:25:49 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	check_wrong_options(t_game *game)
 		{
 			printf("ERROR\nWrong options on map file\n");
 			clean_game(game);
-			//exit(0);
 		}
 		i++;
 		str = game->map[i];

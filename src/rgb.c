@@ -6,7 +6,7 @@
 /*   By: ruidos-s <ruidos-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 16:53:57 by addicted          #+#    #+#             */
-/*   Updated: 2025/04/16 10:42:07 by ruidos-s         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:26:35 by ruidos-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_floor_color(t_game *game, char *line)
 
 	color_str = ft_strdup(line + 1);
 	number = rgb_str_to_hex(color_str);
-	if(number < 0)
+	if (number < 0)
 	{
 		free(color_str);
 		clean_game(game);
@@ -33,10 +33,9 @@ void	get_ceiling_color(t_game *game, char *line)
 	char	*color_str;
 	int		number;
 
-	
 	color_str = ft_strdup(line + 1);
 	number = rgb_str_to_hex(color_str);
-	if(number < 0)
+	if (number < 0)
 	{
 		free(color_str);
 		clean_game(game);
